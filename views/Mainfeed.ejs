@@ -1,35 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" type="text/css" href="./style.css">
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
  <title>Login Register</title>
- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
- <link rel="stylesheet" 
- href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <style>
-        body{
-         padding:50px;
-         background-color: lightgray;
-         border-radius: 15px;
-        }
-        .profile{
-          float: right;
-          padding: 20px;
-          width: 150px;
-          background-color:lightcyan;
-          border-radius: 30px;
-      
-        }
-        .profilepic{
-          background-color: rgb(8, 161, 161);
-          padding: 10px;
-          border-radius: 30px;
-          margin-left: 37px;
-        }
-       </style>
-      </head>
+
+</head>
       <body>
           <div class="profile">
         
@@ -40,9 +18,27 @@
             <button><a href="/profile">profile</a></button>
             <button><a href="/logout">logout</a></button>
         </div>
-        <ul>
-         
-            </ul>
+        <div class="flip-box">
+            <div class="flip-box-inner">
+              <div class="flip-box-front">
+                <h2></h2>
+              </div>
+              <div class="flip-box-back">
+              </form>
+              <h1>upload Image</h1>
+              <form action="/images" id="updateform">
+                  <input type="text" name="category" placeholder="Category">
+                  <br>
+                  <input type="text" name="title" placeholder="Title">
+                  <br>
+                  <input type="text" name="details" placeholder="Details">
+                  <br>
+                  <input type="hidden" name="mID">
+                  <button type="submit" disabled>Submit</button>
+              </form>
+              </div>
+            </div>
+          </div>
        </div>
       
 

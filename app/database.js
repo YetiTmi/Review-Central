@@ -1,8 +1,13 @@
+/*
+Team yeti
+this module ables the acces to the database.
+*/
+
 var mysql = require('mysql');
 var bcrypt = require('bcrypt-nodejs');
 
+//connection
 const connect = () => {
-    // create the connection to database
     const connection = mysql.createConnection({
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
@@ -36,7 +41,7 @@ const logUser = (req, connection,password, username,done) =>{
         if(err)
          return done(err);
         if(!rows.length){
-         return done(null, false, req.flash('loginMessage', 'No User Found'));
+         return done(null, false, req.flash('loginMessage', 'Check the username'));
         }
         if(!bcrypt.compareSync(password, rows[0].password))
          return done(null, false, req.flash('loginMessage', 'Wrong Password'));
@@ -44,7 +49,7 @@ const logUser = (req, connection,password, username,done) =>{
         return done(null, rows[0]);
        });
     }
-
+//getUser..... Still empty
 const getUser = () => {
 
 

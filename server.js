@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
@@ -26,6 +28,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static(__dirname + '/views'));
 app.use(flash());
 
 require('./app/routes.js')(app, passport);
