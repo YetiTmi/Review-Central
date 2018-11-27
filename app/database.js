@@ -49,16 +49,30 @@ const logUser = (req, connection,password, username,done) =>{
         return done(null, rows[0]);
        });
     }
-//getUser..... Still empty
-const getUser = () => {
-
-
+//getAllUsers.....
+const getAllUser = (connection, callback, res) => {
+    connection.query('SELECT * FROM users1',
+    (err,results, fields) => {
+        if(err) console.log(err);
+        callback(results, res);
+    }
+    );
 };
+const insert = (data, connection, res)=>{
+    connection.query('INSERT INTO uploaded(product, price, year, stars, model, thumbnail, image, original) VALUES (?,?,?,?,?,?,?,?);',
+    data,
+    (err, results, fields)=> {
+        if(err) console.log(err);
+        res.send("done");
+    },
+    )};
+
 module.exports = {
     connect: connect,
     deSerial: deSerial,
     findUser: findUser,
     newUser: newUser,
     logUser: logUser,
-    getUser: getUser
+    getAllUser: getAllUser,
+    insert: insert
 }

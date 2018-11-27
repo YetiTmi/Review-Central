@@ -26,21 +26,26 @@
               <div class="flip-box-back">
               </form>
               <h1>upload Image</h1>
-              <form action="/images" id="updateform">
-                  <input type="text" name="category" placeholder="Category">
+              <form action="/upload" method="post" enctype="multipart/form-data" id="mediaform">
+                  <input type="text" name="product" placeholder="product">
                   <br>
-                  <input type="text" name="title" placeholder="Title">
+                  <input type="number" name="price" placeholder="Price">
                   <br>
-                  <input type="text" name="details" placeholder="Details">
+                  <input type="text" name="year" placeholder="Year">
                   <br>
-                  <input type="hidden" name="mID">
-                  <button type="submit" disabled>Submit</button>
+                  <input type="range" min="1" max="5" name="star" placeholder="Stars">
+                  <br>
+                  <input type="text" name="model" placeholder="Model">
+                  <br>
+                  <input onChange= "check()" type="file" name="mediafile" accept="image/*" id="pic">
+                  <br>
+                  <button type="submit" id="ButtonSend" disabled>Submit</button>
               </form>
               </div>
             </div>
           </div>
        </div>
-      
+       <script type="text/javascript" src="/mainfeed.js"></script>
 
 </body>
 </html>
