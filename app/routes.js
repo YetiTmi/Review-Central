@@ -40,15 +40,13 @@ module.exports = (app, passport) => {
   res.render('Mainfeed.ejs');
  });
 
-
+//Start the main feed
 
 
 
 //profile page
  app.get('/profile', (req,res) => {
-     res.render('profile', {
-        
-     });
+     res.render('profile');
  });
 //logout whenever /logout is pressed
  app.get('/logout', (req,res) =>{

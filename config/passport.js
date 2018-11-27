@@ -13,11 +13,7 @@ module.exports = (passport) => {
  });
 
  passport.deserializeUser((id, done)=>{
-  connection.query("SELECT * FROM users1 WHERE id = ? ", [id],
-   (err, rows) =>{
-    done(err, rows[0]);
-   });
-   
+  db.deSerial(connection,id,done);
  });
 
  passport.use(
