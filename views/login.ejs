@@ -2,25 +2,17 @@
 <html lang="en">
 
 <head>
+              <link rel="stylesheet" type="text/css" href="/loginSignin.css">
        <meta charset="UTF-8">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
        <meta http-equiv="X-UA-Compatible" content="ie=edge">
        <title>Login Register</title>
-       <style>
-              html{
-   padding:50px;
-  }
-  body{
-         padding:50px;
-         background-color: lightgray;
-         border-radius: 15px;
-}
- </style>
 </head>
 
 <body>
        <div class="container">
               <div class="col-sm-6 col-sm-offset-3">
+                     <div class="Login">
                      <h2>Login</h2>
 
                      <form action="/login" method="post">
@@ -32,13 +24,14 @@
                                    <label>Password</label>
                                    <input type="password" class="form-control" name="password">
                             </div>
-                            <button type="submit">Login</button>
+                            <button type="submit" class="submit">Login</button>
                      </form>
                      <% if(message.length > 0) { %>
                      <div<%= message %></div><% } %>
+              </div>
               <hr>
 
-              <p>Need an account <a href="/signup">Register</a></p>
+              <p>Need an account?<a href="/signup">Register</a></p>
               <p>Go Back <a href="/">Home</a>.</p>
        </div>
        </div>
