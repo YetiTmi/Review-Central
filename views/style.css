@@ -55,3 +55,10 @@
      border-radius: 30px;
      margin-left: 37px;
    }
+
+  #updateform{
+    float: right;
+  }
+  #Ownfeed{
+    display: flex; /* or inline-flex */
+  }

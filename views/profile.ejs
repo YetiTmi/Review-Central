@@ -10,8 +10,8 @@
 </head>
 <body>
     <div class="profile">
-      <p>user: </p>
-      <ul id="users"></ul>
+      <h1>user:</h1>
+      <ul id="user"></ul>
        </div>
  <div class="container">
   <div class="page-header text-center">
@@ -20,6 +20,23 @@
     <a href="/logout">logout</a>
   </div>
  </div>
+ <h1>Own posts</h1>
+
+ <ul  id="Ownfeed">
+
+ </ul>
+ <form action="/update" id="updateform" hidden>
+  <input type="text" name="product" placeholder="Product">
+  <br>
+  <input type="number" name="price" placeholder="Price">
+  <br>
+  <input type="number" name="year" placeholder="Year">
+  <br>
+  <input type="text" name="model" placeholder="model">
+  <br>
+  <input type="hidden" name="id">
+  <button type="submit">Submit</button>
+</form>
  <script type="text/javascript" src="/main.js"></script>
 </body>
 </html>

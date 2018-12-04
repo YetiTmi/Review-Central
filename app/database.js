@@ -34,8 +34,8 @@ const newUser = (connection, newUserMysql, insertQuery) =>{
     connection.query(insertQuery, [newUserMysql.username, newUserMysql.password]
         )};
         
-//login
-const logUser = (req, connection,password, username,done) =>{
+//login {!!!!!!!!!!!!!!!!!!!!!!!!!! req.flashes are not working properly}
+/*const logUser = (req, connection,password, username,done) =>{
     connection.query('SELECT * FROM users1 WHERE username = ?',[username],
     (err, rows)=>{
         if(err)
@@ -48,31 +48,95 @@ const logUser = (req, connection,password, username,done) =>{
     
         return done(null, rows[0]);
        });
-    }
+    }*/
 //getAllUsers.....
-const getAllUser = (connection, callback, res) => {
-    connection.query('SELECT * FROM users1',
+const getUser = (connection,user_id, callback, res) => {
+    connection.query('SELECT * FROM users1 WHERE id = ?;',[user_id],
     (err,results, fields) => {
         if(err) console.log(err);
         callback(results, res);
     }
     );
 };
-const insert = (data, connection, res)=>{
-    connection.query('INSERT INTO uploaded(product, price, year, stars, model, thumbnail, image, original) VALUES (?,?,?,?,?,?,?,?);',
+const insert = (data, connection, next)=>{
+    connection.query('INSERT INTO uploaded(product, price,category, stars, owner,thumbnail, image, original) VALUES (?,?,?,?,?,?,?,?);',
     data,
     (err, results, fields)=> {
         if(err) console.log(err);
-        res.send("done");
+        next();
     },
     )};
+
+    const select = (connection, callback, res) => {
+        connection.query(
+            'SELECT * FROM uploaded',
+            (err, results, fields) => {
+              if(err) console.log(err);
+              callback(results, res);
+            }
+        );
+    };
+
+    const userPosts = (connection, callback, res, user) =>{
+        console.log('users own posts');
+        connection.query('SELECT * FROM uploaded WHERE owner = ?', [user.username],
+        (err, results) =>{
+            if(err) console.log(err)
+            callback(results, res);
+        }
+        )
+    };
+    const change = (data, connection) => {
+        // simple query
+        connection.query(
+          'UPDATE uploaded SET product = ?, price = ?, year = ?, model = ? WHERE id = ?',[data.product, data.price, data.year, data.model, data.id],
+          //'UPDATE images SET category = \''+data.cat+'\',title = \''+data.title+'\', details = \''+data.details+'\' WHERE id = \''+data.id +'\';',
+            (err, results, fields) => {
+                  if(err) console.log(err);    
+            },
+        );
+      };
+
+      const addLike = (data, connection) => {
+          console.log(data.user, data.image_id);
+        connection.query(
+            'INSERT INTO save_like(Username,Review_id) VALUES (?,?);',[data.user,  data.image_id],
+            (err, results, fields) => {
+                if(err) console.log(err);
+            }
+        );
+      };
+
+      const addLikeToUser =(data, connection) => {
+        connection.query(
+            'UPDATE users1 SET posts = posts + 1 WHERE id = ?', data,
+            (err, results, fields) => {
+                if(err) console.log(err);
+            }
+        );
+      };
+
+      const addLikeToPost =(data, connection) => {
+        console.log("addLikeToPost: "+ data);
+        connection.query(
+            'UPDATE uploaded SET likes = likes + 1 WHERE id = ?',data,
+            (err, results, fields) => {
+                if(err) console.log(err);
+            }
+        );
+      };
 
 module.exports = {
     connect: connect,
     deSerial: deSerial,
     findUser: findUser,
     newUser: newUser,
-    logUser: logUser,
-    getAllUser: getAllUser,
-    insert: insert
+    getUser: getUser,
+    insert: insert,
+    select: select,
+    userPosts: userPosts,
+    change: change,
+    addLike, addLike,
+    addLikeToUser: addLikeToUser,
+    addLikeToPost:addLikeToPost
 }

@@ -1,14 +1,14 @@
 'use strict';
 
-var express = require('express');
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var morgan = require('morgan');
-var app = express();
-var port = process.env.PORT || 8080;
-var passport = require('passport');
-var flash = require('connect-flash');
+const express = require('express');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const app = express();
+const port = process.env.PORT || 8080;
+const passport = require('passport');
+const flash = require('connect-flash');
 
 require('./config/passport')(passport);
 
@@ -30,6 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/views'));
 app.use(express.static(__dirname + '/js'));
+app.use(express.static('public'));
 app.use(flash());
 
 require('./app/routes.js')(app, passport);

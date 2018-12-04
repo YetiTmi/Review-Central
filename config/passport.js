@@ -33,12 +33,13 @@ module.exports = (passport) => {
     }else{
      var newUserMysql = {
       username: username,
-      password: bcrypt.hashSync(password, null, null)
+      password: bcrypt.hashSync(password, null, null),
+      posts: 0
      };
 
-     var insertQuery = "INSERT INTO users1 (username, password) values (?, ?)";
+     var insertQuery = "INSERT INTO users1 (Username, password, posts) values (?, ?, ?)";
 
-     connection.query(insertQuery, [newUserMysql.username, newUserMysql.password],
+     connection.query(insertQuery, [newUserMysql.username, newUserMysql.password, newUserMysql.posts],
       (err, rows)=>{
        newUserMysql.id = rows.insertId;
 
@@ -57,7 +58,18 @@ module.exports = (passport) => {
    passReqToCallback: true
   },
  (req, username, password, done)=>{
-  db.logUser(req, connection, password, username, done);
+  connection.query('SELECT * FROM users1 WHERE username = ?',[username],
+  (err, rows)=>{
+      if(err)
+       return done(err);
+      if(!rows.length){
+       return done(null, false, req.flash('loginMessage', 'Check the username'));
+      }
+      if(!bcrypt.compareSync(password, rows[0].password))
+       return done(null, false, req.flash('loginMessage', 'Wrong Password'));
+  
+      return done(null, rows[0]);
+     });
   })
  );
 };

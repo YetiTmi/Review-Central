@@ -17,3 +17,16 @@ CREATE TABLE uploaded (
     original TEXT,
     PRIMARY KEY(id)
 );
+
+CREATE TABLE save_like(
+    username text,
+    review_id INT
+);
+CREATE TABLE uploadedREviews(
+    username TEXT,
+    review_id INT,
+    user_id INT
+);
+
+ALTER TABLE users1
+ADD posts INT(10);
