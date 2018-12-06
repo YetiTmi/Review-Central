@@ -9,11 +9,9 @@ const getUser = () => {
     console.log("fetch user");
     return response.json();
   }).then((json) => {
-    console.log(json);
-    list.innerHTML = '';
     json.forEach((user) => {
-      const li = constructUser(user);
-      list.appendChild(li);
+      document.getElementById('user').appendChild(constructUser(user));
+      console.log(list);
     });
   });
 };
@@ -34,7 +32,8 @@ const userposts = () => {
     console.log("fetch users posts");
     return response.json();
   }).then((json) => {
-    list.innerHTML = '';
+    
+    // list.innerHTML = '';
     json.forEach((image) => {
       buildUserPosts(image);
     });
@@ -43,8 +42,11 @@ const userposts = () => {
 
 const buildUserPosts = (image) => {
   const li = document.createElement('li');
+    li.className ="container";
       const product = document.createElement('h3');
+      const like = document.createElement('h2');
       product.innerHTML = image.product;
+      like.innerHTML = image.likes;
       li.appendChild(product);
       const img = document.createElement('img');
       const update = document.createElement('button');
@@ -55,10 +57,16 @@ const buildUserPosts = (image) => {
       update.addEventListener('click', () => {
         showForm(image);
       });
+      const riseDiv = document.createElement('div');
+      riseDiv.className = "overlay";
       const deleteForm = addDelete(image);
-      li.appendChild(update);
+      riseDiv.appendChild(deleteForm);
+      riseDiv.appendChild(update);
+      riseDiv.appendChild(product);
+      riseDiv.appendChild(like);
+      li.appendChild(riseDiv);
       li.appendChild(img);
-      li.appendChild(deleteForm);
+      console.log(li);
       Ownfeed.appendChild(li);
 };
 
@@ -88,5 +96,5 @@ const deleteImgs = (img) => {
   console.log('delete' + JSON.stringify(img));
 };
 
-getUser();
 userposts();
+getUser();

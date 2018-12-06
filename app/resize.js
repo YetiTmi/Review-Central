@@ -3,7 +3,7 @@ const sharp = require('sharp');
 
 const doResize = (pathToFile, width, newPath, next) => {
   sharp(pathToFile)
-    .resize(width)
+    .resize(width, width)
     .toFile(newPath)
     .then(() => {
       console.log('Resize OK');

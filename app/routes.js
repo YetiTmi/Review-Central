@@ -62,14 +62,12 @@ module.exports = (app, passport) => {
   });
   app.use('/likeImage', (req, res) => {
     data = {
-      user : req.user.username,
+      user: req.user.username,
       image_id: req.query.id
     }
-    db.addLike(data, connection);
-    db.addLikeToPost(req.query.id,connection);
-    db.addLikeToUser(req.user.id, connection);
-    res.redirect('/mainfeed');
+    db.addLikeToPost(data, connection);
   });
+ //get fetch
   //upload--happens in the main feed
   app.post('/upload', upload.single('mediafile'), (req, res, next) => {
     next();
@@ -94,13 +92,12 @@ module.exports = (app, passport) => {
       req.file.filename + '_medium',
       req.file.filename + '.jpg',
     ];
-    db.insert(data, connection, next);
-   
+    const user = {username:  req.user.username}
+    db.insert(data, connection, next, user);
   });
   app.use('/upload', (req, res) => {
     db.select(connection, cb, res);
   });
-
   app.get('/images', (req, res) => {
     db.select(connection, cb, res);
   });
@@ -112,25 +109,29 @@ module.exports = (app, passport) => {
 
   app.use('/delete', (req, res) => {
     var data = { id: req.query.id }
-    console.log("delete: " + JSON.stringify(data)+req.id);
-     res.redirect('/profile');
+    console.log("delete: " + JSON.stringify(data) + req.id);
+    res.redirect('/profile');
   });
 
-  app.use('/update', (req,res) => {
-console.log(req.query);
-var data = {
-  product: req.query.product,
-  price: req.query.price,
-  year: req.query.year,
-  model: req.query.model,
-  id: req.query.id
-}
-db.change(data, connection);
-res.redirect('/profile')
+  app.use('/update', (req, res) => {
+    console.log(req.query);
+    var data = {
+      product: req.query.product,
+      price: req.query.price,
+      year: req.query.year,
+      model: req.query.model,
+      id: req.query.id
+    }
+    db.change(data, connection);
+    res.redirect('/profile')
   });
 
-  app.get('/userPosts',(req, res) =>{
-    db.userPosts(connection,cb,res, req.user);
+  app.get('/userPosts', (req, res) => {
+    db.userPosts(connection, cb, res, req.user);
+  });
+
+  app.get('/user_likes', (req, res) => {
+    db.selectUserLikes(connection, cb, res, req.user.username);
   });
   //get the right profile
   app.get('/users', (req, res) => {

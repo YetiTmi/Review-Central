@@ -66,8 +66,8 @@ module.exports = (passport) => {
        return done(null, false, req.flash('loginMessage', 'Check the username'));
       }
       if(!bcrypt.compareSync(password, rows[0].password))
-       return done(null, false, req.flash('loginMessage', 'Wrong Password'));
-  
+      return done(null, false, req.flash('loginMessage', 'Wrong Password'));
+
       return done(null, rows[0]);
      });
   })

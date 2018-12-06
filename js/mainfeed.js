@@ -4,12 +4,42 @@ console.log("mainfeed.js");
 const fileInput = document.querySelector('#pic');
 const upform = document.querySelector('#uploadform');
 const feed = document.querySelector('#imagefeed');
+var username = "";
+var likes = [];
+//get user!
+const getuser = () => {
+  fetch('/users').then((response) => {
+    console.log("fetch users posts");
+    return response.json();
+  }).then((user) => {
+    user.forEach((userdata) => {
+      username = userdata.username;
+    });
+    //get from an object
+    //Give the user here and check if it matches with the image owner...
+  });
+};
+
+const getuserslike = () => {
+  fetch('/user_likes').then((response) => {
+    console.log("fetch user likes");
+    return response.json();
+  }).then((data) => {
+    console.log("data", data);
+    data.forEach((userAndLike)=>{
+      console.log("data.forEach", userAndLike.Review_id);
+      likes.push(userAndLike.Review_id)
+    });
+    console.log("Array", likes);
+    //get from an object
+    //Give the user here and check if it matches with the image owner...
+  });
+}
 
 const getImages = () => {
   fetch('/images').then((response) => {
     return response.json();
   }).then((json) => {
-    console.log(json);
     feed.innerHTML = '';
     json.forEach((image) => {
       const li = document.createElement('li');
@@ -41,10 +71,13 @@ const makeLike = (image) => {
   sendButton.type = "Like";
   sendButton.id = "likeButton";
   sendButton.innerHTML = "like";
+  if(image.owner == username || likes.includes(image.id)){
+    sendButton.setAttribute("disabled", true);
+  }
   form.appendChild(inputId);
   form.appendChild(sendButton);
-  console.log(form);
   return form;
+  
 }
 
 
@@ -72,4 +105,6 @@ const check = () => {
 
 upform.addEventListener('submit', sendForm);
 
+getuser();
+getuserslike();
 getImages();
