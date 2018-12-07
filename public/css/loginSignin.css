@@ -1,0 +1,32 @@
+body {
+
+
+}
+
+.container{
+
+
+}
+.Login{
+
+
+}
+h2{
+    margin: auto;
+    text-align: center;
+}
+.form{
+margin: auto;
+    width: 132px;
+}
+
+.submit{
+    margin:0 auto;
+    width:200px;
+}
+
+p{
+    margin:20px auto;
+    width: 80%;
+    text-align: center;
+}
