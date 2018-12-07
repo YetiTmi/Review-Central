@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" type="text/css" href="./style.css">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Mainfeed</title>
+
+</head>
+      <body>
+          <div class="profile">
+            <%=  user.username %>
+             </div>
+       <div class="container">
+        <div class="page-header text-center">
+            <h1><a href="/Mainfeed"> Mainfeed</a></h1>
+            <button><a href="/profile">profile</a></button>
+            <button><a href="/logout">logout</a></button>
+        </div>
+
+           <div> <!-- This div contains search and categories -->
+               <div class="box"> <!-- area for search bar-->
+                   <form action="/search" method="post" enctype="multipart/form-data" id="searchform">
+                        <a>Search by rating</a><br>
+                       <input type="range" min="1" max="5" id="searchinput" name="rating" >
+                       <button type="submit" id="buttonserch">Search!</button>
+                   </form>
+               </div>
+                   <div id="categories">
+                       <ul>
+                        <li>
+                            <form action="/phone" method="post" enctype="multipart/form-data" id="phoneform">
+                                <input type="text" id="phone" name="category" value="Mobilephone" hidden>
+                                <button type="submit" id="categoryphone">Phones</button> 
+                            </form>
+                        </li>
+                        <br>
+
+                        <li>
+                            <form action="/television" method="post" enctype="multipart/form-data" id="tvform">
+                                <input type="text" id="television" name="category" value="Television" hidden>
+                                <button type="submit" id="categorytv" >Televisions</button> 
+                            </form>
+                        </li>
+                        <br>
+
+                        <li>
+                            <form action="/computer" method="post" enctype="multipart/form-data" id="computerform">
+                                <input type="text" id="computer" name="category" value="Computer" hidden>
+                                <button type="submit" id="categorycomputer" >Computers</button> 
+                            </form>
+                        </li>
+                        <br>
+
+                        <li>
+                            <form action="/tablet" method="post" enctype="multipart/form-data" id="tabletform">
+                                <input type="text" id="tablet" name="category" value="Tablet" hidden>
+                                <button type="submit" id="categorytablet" >Tablets</button> 
+                            </form>
+                        </li>
+                        <br>
+
+                       </ul>
+                   </div>
+           </div>
+  
+  <div>
+      <ul id="imagefeed">
+
+      </ul>
+  </div>
+        <div class="flip-box">
+            <div class="flip-box-inner">
+              <div class="flip-box-front">
+                <h2></h2>
+              </div>
+              <div class="flip-box-back">
+              </form>
+              <h1>upload Image</h1>
+              <form action="/upload" method="post" enctype="multipart/form-data" id="uploadform">
+                  <input type="text" name="product" placeholder="product">
+                  <br>
+                  <input type="number" name="price" placeholder="Price">
+                  <br>
+                  <select name="category">
+                    <option value="Mobilephone">Mobilephone</option>
+                    <option value="Television">Television</option>
+                    <option value="Tablet">Tablet</option>
+                    <option value="Computer">Computer</option>
+                  </select>
+                  <input type="range" min="1" max="5" name="star" placeholder="Stars">
+                  <br>
+                  <input type="file" name="mediafile" accept="image/*" id="pic">
+                  <br>
+                  <button type="submit" id="ButtonSend" >Submit</button>
+              </form>
+              </div>
+            </div>
+          </div>
+       </div>
+       <script type="text/javascript" src="/mainfeed.js"></script>
+
+</body>
+</html>
