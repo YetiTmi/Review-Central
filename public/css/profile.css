@@ -37,28 +37,26 @@ body {
 }
 
 .row {
-    height: 750px;
+    padding: 47px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row-reverse;
 }
 
 .main {
-    flex: 75%;
+    width: 75%;
+    box-sizing: border-box;
+    padding-right: 40px;
 }
 
 .side {
-    flex: 25%;
-}
-@media screen and (max-width: 700px) {
-    .row{
-        flex-direction: column;
-    }
-    .navbar{
-        flex-direction: column;
-    }
+    width: 25%;
 }
 
+.main h1{
+    text-align:center;
+    padding-bottom: 20px;
+}
 .profile h1{
     text-align:center;
 }
@@ -159,4 +157,23 @@ body {
     padding: 10px;
     text-align: center;
     color: #f2f2f2;/*the same as logo's color*/
+}
+
+@media screen and (max-width: 700px) {
+    .row{
+        /*flex-direction: column;*/
+    }
+    .topbar{
+        flex-direction: column;
+    }
+    .main {
+        width: 100%;
+    }
+
+    .side {
+        width: 100%;
+    }
+    .container{
+        width: 100%;
+    }
 }

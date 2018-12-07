@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/profile.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Profile</title>
+</head>
+<body>
+
+<div class="topbar">
+    <div class="topLeft">profile</div>
+    <div class="topRight">
+        <a href="/Mainfeed">Main feed</a>
+        <a href="/logout">logout</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="side">
+        <div class="profile">
+            <h1>user:</h1>
+            <ul id="user"></ul>
+        </div>
+        <div class="flip-box">
+            <div class="flip-box-inner">
+                <div class="flip-box-front">
+                    <h2></h2>
+                </div>
+                <div class="flip-box-back">
+                    </form>
+                    <h1>upload Image</h1>
+                    <form action="/upload" method="post" enctype="multipart/form-data" id="uploadform">
+                        <input type="text" name="product" placeholder="product">
+                        <br>
+                        <input type="number" name="price" placeholder="Price">
+                        <br>
+                        <select name="category">
+                            <option value="Mobilephone">Mobilephone</option>
+                            <option value="Television">Television</option>
+                            <option value="Tablet">Tablet</option>
+                            <option value="Computer">Computer</option>
+                        </select>
+                        <input type="range" min="1" max="5" name="star" placeholder="Stars">
+                        <br>
+                        <input type="file" name="mediafile" accept="image/*" id="pic">
+                        <br>
+                        <button type="submit" id="ButtonSend">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <h1>Own posts</h1>
+        <ul id="Ownfeed">
+            <!--li class="container"-->
+        </ul>
+    </div>
+</div>
+
+<div class="footer">
+    <p><b>Developer:</b> Timurhan Calisiyor, Emil Toivainen, Yiyan Zhang</p>
+    <p><b>Github:</b><a href="https://github.com/YetiTmi/Review-Central"></a> https://github.com/YetiTmi/Review-Central</p>
+    <p><b>Contact us:</b> yiyanz@metropolia.fi</p>
+</div>
+
+<script type="text/javascript" src="/main.js"></script>
+</body>
+</html>
