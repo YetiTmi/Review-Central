@@ -23,7 +23,7 @@ module.exports = (passport) => {
    passwordField: 'password',
    passReqToCallback: true
   },
-  (req, username, password, done)=>{
+  (req, username, password,/*email, interest,*/done)=>{
    connection.query("SELECT * FROM users1 WHERE username = ? ", 
    [username], (err, rows)=>{
     if(err)
@@ -35,12 +35,15 @@ module.exports = (passport) => {
       username: username,
       password: bcrypt.hashSync(password, null, null),
       posts: 0
+     /* email: email,
+      interest: interest*/
      };
-
+     console.log("new USer:", newUserMysql);
      var insertQuery = "INSERT INTO users1 (Username, password, posts) values (?, ?, ?)";
 
      connection.query(insertQuery, [newUserMysql.username, newUserMysql.password, newUserMysql.posts],
       (err, rows)=>{
+        if(err) console.log(err);
        newUserMysql.id = rows.insertId;
 
        return done(null, newUserMysql);

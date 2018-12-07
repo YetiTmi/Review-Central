@@ -47,12 +47,14 @@ module.exports = (app, passport) => {
     res.render('signup.ejs', { message: req.flash('signupMessage') });
   });
   //redirect depends if succes or failure
-  app.post('/signup', passport.authenticate('local-signup', {
+  app.post('/signup', 
+  passport.authenticate('local-signup',
+    {
     successRedirect: '/Mainfeed',
     failureRedirect: '/signup',
     failureFlash: true,
+}));
 
-  }));
   //if user isLoggedIN, will render the main feed page where reviews are created
   app.get('/Mainfeed', isLoggedIn, (req, res) => {
     console.log(req.user.id);
@@ -103,7 +105,7 @@ module.exports = (app, passport) => {
   });
 
   //profile page
-  app.get('/profile', (req, res) => {
+  app.get('/profile',isLoggedIn, (req, res) => {
     res.render('profile');
   });
 
