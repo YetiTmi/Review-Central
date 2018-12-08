@@ -33,23 +33,7 @@ const findUser = (connection,username) => {
 const newUser = (connection, newUserMysql, insertQuery) =>{
     connection.query(insertQuery, [newUserMysql.username, newUserMysql.password]
         )};
-        
-//login {!!!!!!!!!!!!!!!!!!!!!!!!!! req.flashes are not working properly}
-/*const logUser = (req, connection,password, username,done) =>{
-    connection.query('SELECT * FROM users1 WHERE username = ?',[username],
-    (err, rows)=>{
-        if(err)
-         return done(err);
-        if(!rows.length){
-         return done(null, false, req.flash('loginMessage', 'Check the username'));
-        }
-        if(!bcrypt.compareSync(password, rows[0].password))
-         return done(null, false, req.flash('loginMessage', 'Wrong Password'));
-    
-        return done(null, rows[0]);
-       });
-    }*/
-//getAllUsers.....
+
 const getUser = (connection,user_id, callback, res) => {
     connection.query('SELECT * FROM users1 WHERE id = ?;',[user_id],
     (err,results, fields) => {
@@ -80,7 +64,17 @@ const insert = (data, connection, next)=>{
 const search = (data, connection) =>{
     console.log(data);
     connection.execute(
-        'SELECT image FROM bc_media WHERE product = ?;', [data.cat],
+        'SELECT image FROM bc_media WHERE category = ?;', [data.cat],
+        (err, results, fields) => {
+            console.log(err);
+        },
+    );
+};
+
+const ratingSearch = (data, connection) =>{
+    console.log(data);
+    connection.execute(
+        'SELECT image FROM bc_media stars category = ?;', [data.star],
         (err, results, fields) => {
             console.log(err);
         },
@@ -117,24 +111,40 @@ const search = (data, connection) =>{
         );
       };
 
-      const addLikeToUser =(data, connection) => {
+      const addPoint =(user, connection) => {
         connection.query(
-            'UPDATE users1 SET posts = posts + 1 WHERE id = ?', data,
+            'UPDATE users1 SET posts = posts + 1 WHERE username = ?', user.username,
             (err, results, fields) => {
-                if(err) console.log(err);
+                if(err)
+                    console.log("error:"+ err);
             }
         );
       };
 
       const addLikeToPost =(data, connection) => {
-        console.log("addLikeToPost: "+ data);
+        console.log("addLikeToPost: "+ JSON.stringify(data));
         connection.query(
-            'UPDATE uploaded SET likes = likes + 1 WHERE id = ?',data,
+            'UPDATE uploaded SET likes = likes + 1 WHERE id = ?',data.image_id,
             (err, results, fields) => {
-                if(err) console.log(err);
+                if(err){
+                    console.log("error", err);
+                }else{
+                    console.log("add like");
+                    addLike(data, connection);
+                }
             }
         );
       };
+
+      const selectUserLikes = (connection, callback, res, user) => {
+        connection.query(
+            'SELECT * FROM save_like WHERE Username = ?',[user],
+            (err, results, fields) => {
+              if(err) console.log(err);
+              callback(results, res);
+            }
+        );
+    }
 
 module.exports = {
     connect: connect,
@@ -145,9 +155,11 @@ module.exports = {
     insert: insert,
     select: select,
     search: search,
+    ratingSearch: ratingSearch,
     userPosts: userPosts,
     change: change,
-    addLike, addLike,
-    addLikeToUser: addLikeToUser,
-    addLikeToPost:addLikeToPost
-}
+    addLike: addLike,
+    addLikeToPost:addLikeToPost,
+    selectUserLikes: selectUserLikes,
+    addPoint: addPoint,
+};

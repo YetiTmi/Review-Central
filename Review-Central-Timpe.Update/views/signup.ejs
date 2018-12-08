@@ -1,45 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login Register</title>
-    <style>
-        html{
-   padding:50px;
-  }
- </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Login Register</title>
+<link rel="stylesheet" type="text/css" href="css/loginSignin.css">
+<style>
+    html{
+        padding:50px;
+    }
+</style>
 </head>
-
 <body>
-    <div class="container">
-        <div class="col-sm-6 col-sm-offset-3">
-            <h2>Register</h2>
 
-            <% if(message.length > 0) { %>
-            <div>
-                <%= message %>
+        <div class="container">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="Login">
+                    <h2>Register</h2>
+        
+                    <% if(message.length > 0) { %>
+                        <div>
+                            <%= message %>
+                        </div>
+                    <% } %>
+        
+                    <form action="/signup" method="post">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="text" class="form-control" name="password">
+                        </div>
+                        <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label>Main Interest</label>
+                                <select name="category">
+                                    <option value="Mobilephone">Mobilephone</option>
+                                    <option value="Television">Television</option>
+                                    <option value="Tablet">Tablet</option>
+                                    <option value="Computer">Computer</option>
+                                  </select>
+                            </div>
+                        <button type="submit" class="submit">Register</button>
+                    </form>
+                </div>
+                <hr>
+                <p>Already got an account?<a href="/login">Login</a></p>
+                <p>Go Back <a href="/">Home</a>.</p>
             </div>
-            <% } %>
-
-            <form action="/signup" method="post">
-                <div class="form-group">
-                    <label>Username</label>
-                    <input type="text" class="form-control" name="username">
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="type" class="form-control" name="password">
-                </div>
-                <button type="submit">Register</button>
-            </form>
-            <hr>
-            <p>Need an account <a href="/signup">Register</a></p>
-            <p>Go Back <a href="/">Home</a>.</p>
         </div>
-    </div>
-</body>
+        </body>
 
 </html>

@@ -47,12 +47,14 @@ module.exports = (app, passport) => {
     res.render('signup.ejs', { message: req.flash('signupMessage') });
   });
   //redirect depends if succes or failure
-  app.post('/signup', passport.authenticate('local-signup', {
+  app.post('/signup', 
+  passport.authenticate('local-signup',
+    {
     successRedirect: '/Mainfeed',
     failureRedirect: '/signup',
     failureFlash: true,
+}));
 
-  }));
   //if user isLoggedIN, will render the main feed page where reviews are created
   app.get('/Mainfeed', isLoggedIn, (req, res) => {
     console.log(req.user.id);
@@ -62,47 +64,95 @@ module.exports = (app, passport) => {
   });
   app.use('/likeImage', (req, res) => {
     data = {
-      user : req.user.username,
+      user: req.user.username,
       image_id: req.query.id
     }
-    db.addLike(data, connection);
-    db.addLikeToPost(req.query.id,connection);
-    db.addLikeToUser(req.user.id, connection);
-    res.redirect('/mainfeed');
+    db.addLikeToPost(data, connection);
+    res.redirect('/Mainfeed')
   });
+
 
     app.post('/search', (req, res, next) =>{
         console.log('search post');
         next();
     });
 
-    app.use('/search:product', (req, res, next) => {
+    app.use('/search:rating', (req, res, next) => {
         console.log('searching...');
-        console.log(req.body.product);
+        console.log(req.body.rating);
         var data = {
-            cat: req.body.product,
+            star: req.body.rating,
         };
-        db.search(data, connection, next);
+        db.ratingSearch(data, connection, next);
         //res.redirect('/');
     });
 
 
-    app.post('/category', (req, res, next) =>{
-        console.log('search category post');
+    app.post('/phone', (req, res, next) =>{
+        console.log('phone post');
         next();
     });
 
-    app.use('/category:product', (req, res, next) => {
-        console.log('searching category...');
-        console.log(req.body.categorygo);
+    app.use('/phone:category', (req, res, next) => {
+        console.log('phone category...');
+        console.log(req.body.category);
         var data = {
-            cat: req.body.categorygo,
+            cat: req.body.phone,
         };
+        console.log(data);
+        db.search(data, connection, next);
+        //res.redirect('/');
+    });
+
+    app.post('/television', (req, res, next) =>{
+        console.log('television post');
+        next();
+    });
+
+    app.use('/television:category', (req, res, next) => {
+        console.log('television category...');
+        console.log(req.body.category);
+        var data = {
+            cat: req.body.television,
+        };
+        console.log(data);
+        db.search(data, connection, next);
+        //res.redirect('/');
+    });
+    app.post('/computer', (req, res, next) =>{
+        console.log('computer post');
+        next();
+    });
+
+    app.use('/computer:category', (req, res, next) => {
+        console.log('computer category...');
+        console.log(req.body.category);
+        var data = {
+            cat: req.body.computer,
+        };
+        console.log(data);
+        db.search(data, connection, next);
+        //res.redirect('/');
+    });
+    app.post('/tablet', (req, res, next) =>{
+        console.log('tablet post');
+        next();
+    });
+
+    app.use('/tablet:category', (req, res, next) => {
+        console.log('tablet category...');
+        console.log(req.body.category);
+        var data = {
+            cat: req.body.tablet,
+        };
+        console.log(data);
         db.search(data, connection, next);
         //res.redirect('/');
     });
 
 
+
+ //get fetch
   //upload--happens in the main feed
   app.post('/upload', upload.single('mediafile'), (req, res, next) => {
     next();
@@ -118,17 +168,17 @@ module.exports = (app, passport) => {
   // insert to database
   app.use('/upload', (req, res, next) => {
     const data = [
-      req.body.product,
-      req.body.price,
-      req.body.category,
-      req.body.star,
-      req.user.username,
-      req.file.filename + '_thumb',
-      req.file.filename + '_medium',
-      req.file.filename + '.jpg',
+        req.body.product.toUpperCase(),
+        req.body.price + '€',
+        req.body.category,
+        req.body.star,
+        req.user.username,
+        req.file.filename + '_thumb',
+        req.file.filename + '_medium',
+        req.file.filename + '.jpg',
     ];
-    db.insert(data, connection, next);
-   
+    const user = {username:  req.user.username}
+    db.insert(data, connection, next, user);
   });
   app.use('/upload', (req, res) => {
     db.select(connection, cb, res);
@@ -138,40 +188,57 @@ module.exports = (app, passport) => {
         db.select(connection, cb, res);
     });
 
-    app.use('/category', (req, res) =>{
+    app.use('/phone', (req, res) =>{
         db.select(connection, cb, res);
     });
 
+    app.use('/television', (req, res) =>{
+        db.select(connection, cb, res);
+    });
+
+    app.use('/computer', (req, res) =>{
+        db.select(connection, cb, res);
+    });
+
+    app.use('/tablet', (req, res) =>{
+        db.select(connection, cb, res);
+    });
+
+    
   app.get('/images', (req, res) => {
     db.select(connection, cb, res);
   });
 
   //profile page
-  app.get('/profile', (req, res) => {
+  app.get('/profile',isLoggedIn, (req, res) => {
     res.render('profile');
   });
 
   app.use('/delete', (req, res) => {
     var data = { id: req.query.id }
-    console.log("delete: " + JSON.stringify(data)+req.id);
-     res.redirect('/profile');
+    console.log("delete: " + JSON.stringify(data) + req.id);
+    res.redirect('/profile');
   });
 
-  app.use('/update', (req,res) => {
-console.log(req.query);
-var data = {
-  product: req.query.product,
-  price: req.query.price,
-  year: req.query.year,
-  model: req.query.model,
-  id: req.query.id
-}
-db.change(data, connection);
-res.redirect('/profile')
+  app.use('/update', (req, res) => {
+    console.log(req.query);
+    var data = {
+      product: req.query.product,
+      price: req.query.price,
+      year: req.query.year,
+      model: req.query.model,
+      id: req.query.id
+    }
+    db.change(data, connection);
+    res.redirect('/profile')
   });
 
-  app.get('/userPosts',(req, res) =>{
-    db.userPosts(connection,cb,res, req.user);
+  app.get('/userPosts', (req, res) => {
+    db.userPosts(connection, cb, res, req.user);
+  });
+
+  app.get('/user_likes', (req, res) => {
+    db.selectUserLikes(connection, cb, res, req.user.username);
   });
   //get the right profile
   app.get('/users', (req, res) => {
