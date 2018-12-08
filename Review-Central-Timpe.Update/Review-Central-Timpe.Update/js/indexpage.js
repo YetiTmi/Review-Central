@@ -25,6 +25,7 @@ const categoryImages = (cat) => {
         json.forEach((image) => {
             if(image.category === cat){
                 const li = document.createElement('li');
+                const div = document.createElement('div');
                 const product = document.createElement('h3');
                 const like = document.createElement('h2');
                 product.innerHTML = image.product;
@@ -32,8 +33,10 @@ const categoryImages = (cat) => {
                 li.appendChild(product);
                 const img = document.createElement('img');
                 img.src = 'thumbs/' + image.thumbnail;
-                li.appendChild(like);
-                li.appendChild(img);
+                div.appendChild(img);
+                div.appendChild(product);
+                div.appendChild(like);
+                li.appendChild(div);
                 feed.appendChild(li);
             } else if(cat === '' || cat === ' ') {
                 getImages();
@@ -54,15 +57,18 @@ const searchImages = (stars) => {
         json.forEach((image) => {
             if(image.stars === stars){
                 const li = document.createElement('li');
-                const title = document.createElement('h3');
+                const div = document.createElement('div');
+                const product = document.createElement('h3');
                 const like = document.createElement('h2');
-                title.innerHTML = image.product;
+                product.innerHTML = image.product;
                 like.innerHTML = image.likes;
-                li.appendChild(title);
+                li.appendChild(product);
                 const img = document.createElement('img');
                 img.src = 'thumbs/' + image.thumbnail;
-                li.appendChild(like);
-                li.appendChild(img);
+                div.appendChild(img);
+                div.appendChild(product);
+                div.appendChild(like);
+                li.appendChild(div);
                 feed.appendChild(li);
             } else if(stars === '' || stars === ' ') {
                 getImages();
@@ -79,6 +85,7 @@ const getImages = () => {
     feed.innerHTML = '';
     json.forEach((image) => {
       const li = document.createElement('li');
+      const div = document.createElement('div');
       const product = document.createElement('h3');
       const like = document.createElement('h2');
       product.innerHTML = image.product;
@@ -86,8 +93,10 @@ const getImages = () => {
       li.appendChild(product);
       const img = document.createElement('img');
       img.src = 'medium/' + image.image;
-      li.appendChild(like);
-      li.appendChild(img);
+      div.appendChild(img);
+      div.appendChild(product);
+      div.appendChild(like);
+      li.appendChild(div);
       feed.appendChild(li);
     });
   });

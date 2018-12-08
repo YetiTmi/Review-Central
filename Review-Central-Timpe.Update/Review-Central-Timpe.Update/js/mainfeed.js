@@ -123,19 +123,20 @@ const getImages = () => {
     json.forEach((image) => {
         const postedBy = document.createElement('h2');
         const li = document.createElement('li');
+        li.className ='box';
         const product = document.createElement('h3');
         const like = document.createElement('h2');
         postedBy.innerHTML = "Review By: " + image.owner;
         product.innerHTML = image.product;
         like.innerHTML = image.likes;
-        li.appendChild(product);
         const img = document.createElement('img');
         img.src = 'medium/' + image.image;
         const likeButton = makeLike(image);
+        li.appendChild(img);
+        li.appendChild(product);
         li.appendChild(postedBy);
         li.appendChild(likeButton);
         li.appendChild(like);
-        li.appendChild(img);
         feed.appendChild(li)
     });
   });

@@ -5,73 +5,89 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
  <title>Login Register</title>
- <style>
-   body{
-         padding:50px;
-         background-color: lightgray;
-         border-radius: 15px;
-        }
- </style>
+ <link rel="stylesheet" type="text/css" href="../css/index.css">
 </head>
 <body>
- <div class="container">
-  <div class="jumbotron text-center">
-   <a href="/login">Login</a>
-   <a href="/signup">Register</a>
-  </div>
-
-  <div> <!-- This div contains search and categories -->
-    <div class="box"> <!-- area for search bar-->
-        <form action="/search" method="post" enctype="multipart/form-data" id="searchform">
-             <a>Search by rating</a><br>
-            <input type="range" min="1" max="5" id="searchinput" name="rating" >
-            <button type="submit" id="buttonserch">Search!</button>
-        </form>
-    </div>
-        <div id="categories">
-            <ul>
-             <li>
-                 <form action="/phone" method="post" enctype="multipart/form-data" id="phoneform">
-                     <input type="text" id="phone" name="category" value="Mobilephone" hidden>
-                     <button type="submit" id="categoryphone">Phones</button> 
-                 </form>
-             </li>
-             <br>
-
-             <li>
-                 <form action="/television" method="post" enctype="multipart/form-data" id="tvform">
-                     <input type="text" id="television" name="category" value="Television" hidden>
-                     <button type="submit" id="categorytv" >Televisions</button> 
-                 </form>
-             </li>
-             <br>
-
-             <li>
-                 <form action="/computer" method="post" enctype="multipart/form-data" id="computerform">
-                     <input type="text" id="computer" name="category" value="Computer" hidden>
-                     <button type="submit" id="categorycomputer" >Computers</button> 
-                 </form>
-             </li>
-             <br>
-
-             <li>
-                 <form action="/tablet" method="post" enctype="multipart/form-data" id="tabletform">
-                     <input type="text" id="tablet" name="category" value="Tablet" hidden>
-                     <button type="submit" id="categorytablet" >Tablets</button> 
-                 </form>
-             </li>
-             <br>
-
-            </ul>
+        <div class="topLogo">
+            <div class="logo">logo</div>
         </div>
-</div>
-
-<div>
-<ul id="imagefeed">
-
-</ul>
- </div>
-
- <script type="text/javascript" src="/indexpage.js"></script>
-</body>
+        
+        <div class="container">
+            <div class="main">
+                <div class="showSlogan">
+                    <p class="slogan">SLOGAN</p>
+                    <p class="sentence">One sentence introduce</p>
+                </div>
+                <div class="signLog">
+                    <a style="font-size:1.25em;" href="/login">Login</a>
+                    <a style="font-size:1.125em;" href="/signup">Sign up</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- This div contains search and categories -->
+        <div class="container">
+            <div class="searchCategories"> <!-- area for search bar-->
+                <form action="/search" method="post" enctype="multipart/form-data" id="searchform">
+                    <a>Search by rating</a><br>
+                    <input type="range" min="1" max="5" id="searchinput" name="rating" >
+                    <button type="submit" id="buttonserch">Search!</button>
+                </form>
+            </div>
+        </div>
+        
+            <div id="categories">
+                <ul>
+                    <li>
+                        <form action="/phone" method="post" enctype="multipart/form-data" id="phoneform">
+                            <input type="text" id="phone" name="category" value="Mobilephone" hidden>
+                            <button type="submit" id="categoryphone">Phones</button>
+                        </form>
+                    </li>
+                    <br>
+        
+                    <li>
+                        <form action="/television" method="post" enctype="multipart/form-data" id="tvform">
+                            <input type="text" id="television" name="category" value="Television" hidden>
+                            <button type="submit" id="categorytv" >Televisions</button>
+                        </form>
+                    </li>
+                    <br>
+        
+                    <li>
+                        <form action="/computer" method="post" enctype="multipart/form-data" id="computerform">
+                            <input type="text" id="computer" name="category" value="Computer" hidden>
+                            <button type="submit" id="categorycomputer" >Computers</button>
+                        </form>
+                    </li>
+                    <br>
+        
+                    <li>
+                        <form action="/tablet" method="post" enctype="multipart/form-data" id="tabletform">
+                            <input type="text" id="tablet" name="category" value="Tablet" hidden>
+                            <button type="submit" id="categorytablet" >Tablets</button>
+                        </form>
+                    </li>
+                    <br>
+        
+                </ul>
+            </div>
+        
+        <div class="container">
+            <div class="newReview">
+                <h1 class="nrTitle">Newest reviews</h1>
+                <ul id="imagefeed">
+        
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><b>Developer:</b> Timurhan Calisiyor, Emil Toivainen, Yiyan Zhang</p>
+            <p><b>Github:</b><a href="https://github.com/YetiTmi/Review-Central"></a> https://github.com/YetiTmi/Review-Central</p>
+            <p><b>Contact us:</b> yiyanz@metropolia.fi</p>
+        </div>
+        
+        <script type="text/javascript" src="/indexpage.js"></script>
+        </body>
 </html>

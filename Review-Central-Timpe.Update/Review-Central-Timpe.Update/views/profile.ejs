@@ -5,38 +5,56 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
  
- <link rel="stylesheet" type="text/css" href="/profile.css">
+ <link rel="stylesheet" type="text/css" href="css/profile.css">
  <title>Login Register</title>
 </head>
+
 <body>
-    <div class="profile">
-      <h1>user:</h1>
-      <ul id="user"></ul>
-       </div>
- <div class="container">
-  <div class="page-header text-center">
-    <h1>profile</h1>
-    <a href="/Mainfeed">Main feed</a>
-    <a href="/logout">logout</a>
-  </div>
- </div>
- <h1>Own posts</h1>
 
- <ul  id="Ownfeed">
-
- </ul>
- <form action="/update" id="updateform" hidden>
-  <input type="text" name="product" placeholder="Product">
-  <br>
-  <input type="number" name="price" placeholder="Price">
-  <br>
-  <input type="number" name="year" placeholder="Year">
-  <br>
-  <input type="text" name="model" placeholder="model">
-  <br>
-  <input type="hidden" name="id">
-  <button type="submit">Submit</button>
-</form>
- <script type="text/javascript" src="/main.js"></script>
-</body>
+    <div class="topbar">
+        <div class="topLeft">profile</div>
+        <div class="topRight">
+            <a href="/Mainfeed">Main feed</a>
+            <a href="/logout">logout</a>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="side">
+            <div class="profile">
+                <h1>user:</h1>
+                <ul id="user"></ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main">
+        <h1>Own posts</h1>
+        <ul id="Ownfeed">
+            <!--li class="container"-->
+        </ul>
+    </div>
+    
+    <form action="/update" id="updateform" hidden>
+        <input type="text" name="product" placeholder="Product">
+        <br>
+        <input type="number" name="price" placeholder="Price">
+        <br>
+        <input type="number" name="year" placeholder="Year">
+        <br>
+        <input type="text" name="model" placeholder="model">
+        <br>
+        <input type="hidden" name="id">
+        <button type="submit">Submit</button>
+    </form>
+    
+    <div class="footer">
+        <p><b>Developer:</b> Timurhan Calisiyor, Emil Toivainen, Yiyan Zhang</p>
+        <p><b>Github:</b><a href="https://github.com/YetiTmi/Review-Central"></a> https://github.com/YetiTmi/Review-Central</p>
+        <p><b>Contact us:</b> yiyanz@metropolia.fi</p>
+    </div>
+    
+    <script type="text/javascript" src="/main.js"></script>
+    </body>
+    
 </html>
