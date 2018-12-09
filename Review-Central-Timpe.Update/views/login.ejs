@@ -10,36 +10,31 @@
 </head>
 
 <body>
-        <div class="container">
+<div class="container">
         
-            <div class="Login">
-                <h2>Login</h2>
+    <div class="Login">
+        <h2>Login</h2>
         
-                <form action="/login" method="post" class="form">
-                    <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" name="username">
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" class="form-control" name="password">
-                    </div>
-                    <div class="submit">
-                    <button type="submit" >Login</button>
-                    </div>
-                </form>
+        <form action="/login" method="post" class="form">
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password">
+            </div>
+            <div class="submit">
+                <button type="submit" >➔</button>
+            </div>
+            </form>
                 <% if(message.length > 0) { %>
-                    <div><%= message %>
+                    <div id="warning"><%= message %>
                     </div>
                 <% } %>
             </div>
         
-            <hr>
+    <p>Need an account? <br> <a href="/signup">Register here</a></p>
+    <p>Go Back <br><a href="/">Home</a></p>
         
-            <p>Need an account? <a href="/signup">Register</a></p>
-            <p>Go Back <a href="/">Home</a>.</p>
-        
-        </div>
-        </body>
-
+</div>
+</body>
 </html>

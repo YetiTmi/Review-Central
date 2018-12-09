@@ -112,3 +112,52 @@ body {
     text-align: center;
     color: #f2f2f2;/*the same as logo's color*/
 }
+
+#categories {
+    list-style-type: none;
+    background-color: #333333;;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    margin: 0;
+    padding: 10px 0px 10px 0px;
+
+}
+
+.catItem {
+    background-color: #333333;
+    border: none;
+    padding: 12px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    flex-basis: 10%;
+}
+
+.searchCategories {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    padding: 15px;
+    background-color: #333333;
+    color: #dfddd1;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+
+}
+
+#buttonsearch {
+    background-color: #333333;
+    border: none;
+    color: #dfddd1;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}

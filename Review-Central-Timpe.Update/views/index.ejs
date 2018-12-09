@@ -26,49 +26,45 @@
         </div>
         
         <!-- This div contains search and categories -->
-        <div class="container">
-            <div class="searchCategories"> <!-- area for search bar-->
-                <form action="/search" method="post" enctype="multipart/form-data" id="searchform">
-                    <a>Search by rating</a><br>
-                    <input type="range" min="1" max="5" id="searchinput" name="rating" >
-                    <button type="submit" id="buttonserch">Search!</button>
-                </form>
-            </div>
-        </div>
+<div class="searchCategories"> <!-- area for search bar-->
+    <form class="searchCategories" action="/search" method="post" enctype="multipart/form-data" id="searchform">
+        <a>Search by rating</a>
+
+        <input type="range" min="1" max="5" id="searchinput" name="rating" >
+
+        <button type="submit" id="buttonsearch">Search!</button>
+    </form>
+</div>
         
-            <div id="categories">
-                <ul>
+        <div >
+                <ul id="categories">
                     <li>
                         <form action="/phone" method="post" enctype="multipart/form-data" id="phoneform">
                             <input type="text" id="phone" name="category" value="Mobilephone" hidden>
-                            <button type="submit" id="categoryphone">Phones</button>
+                            <button class="catItem" type="submit" id="categoryphone">Phones</button>
                         </form>
                     </li>
-                    <br>
         
                     <li>
                         <form action="/television" method="post" enctype="multipart/form-data" id="tvform">
                             <input type="text" id="television" name="category" value="Television" hidden>
-                            <button type="submit" id="categorytv" >Televisions</button>
+                            <button class="catItem" type="submit" id="categorytv" >Televisions</button>
                         </form>
                     </li>
-                    <br>
         
                     <li>
                         <form action="/computer" method="post" enctype="multipart/form-data" id="computerform">
                             <input type="text" id="computer" name="category" value="Computer" hidden>
-                            <button type="submit" id="categorycomputer" >Computers</button>
+                            <button class="catItem" type="submit" id="categorycomputer" >Computers</button>
                         </form>
                     </li>
-                    <br>
         
                     <li>
                         <form action="/tablet" method="post" enctype="multipart/form-data" id="tabletform">
                             <input type="text" id="tablet" name="category" value="Tablet" hidden>
-                            <button type="submit" id="categorytablet" >Tablets</button>
+                            <button class="catItem" type="submit" id="categorytablet" >Tablets</button>
                         </form>
                     </li>
-                    <br>
         
                 </ul>
             </div>
