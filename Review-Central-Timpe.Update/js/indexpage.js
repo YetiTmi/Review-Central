@@ -1,6 +1,6 @@
 'use strict';
 
-const feed = document.querySelector('#imagefeed');
+const indexFooder = document.querySelector('#indexFeed');
 
 const sFrm = document.querySelector('#searchform');
 const radios = document.getElementsByName('rating-input-1');
@@ -20,24 +20,40 @@ const categoryImages = (cat) => {
         return response.json();
     }).then((json) => {
         //console.log(json);
-        console.log('Searching for -> ' + cat);
-        feed.innerHTML = '';
+        //console.log('Searching for -> ' + cat);
+        //feed.innerHTML = '';
+        indexFooder.innerHTML = '';
         json.forEach((image) => {
             if(image.category === cat){
                 const li = document.createElement('li');
                 const div = document.createElement('div');
-                const product = document.createElement('h3');
-                const like = document.createElement('h2');
+                div.className = 'box';
+                const product = document.createElement('div');
+                product.className = 'productName';
+                //.likeDiv >  .likeIcon
+                //const likeNo = document.createElement('p');
+                //likeNo.className = 'likeNo';
+                 const likeIcon = document.createElement('i');
+                 likeIcon.className = 'far fa-thumbs-up fa-fw';
+                const likeDiv = document.createElement('div');
+                likeDiv.className = 'likeDiv';
+                likeDiv.innerHTML = image.likes;
+                likeDiv.appendChild(likeIcon);
+                //likeDiv.appendChild(likeNo);
+                //.info > .productName + .likeDiv
+                const info = document.createElement('div');
+                info.className = 'info';
+                info.appendChild(product);
+                info.appendChild(likeDiv);
+                //.box > img + .info
                 product.innerHTML = image.product;
-                like.innerHTML = image.likes;
-                li.appendChild(product);
                 const img = document.createElement('img');
-                img.src = 'thumbs/' + image.thumbnail;
+                img.src = 'medium/' + image.image;
                 div.appendChild(img);
-                div.appendChild(product);
-                div.appendChild(like);
+                div.appendChild(info);
+                //li > .box
                 li.appendChild(div);
-                feed.appendChild(li);
+                indexFooder.appendChild(li);
             } else if(cat === '' || cat === ' ') {
                 getImages();
             };
@@ -49,25 +65,39 @@ const searchImages = (stars) => {
     fetch('/images').then((response) => {
         return response.json();
     }).then((json) => {
-        //console.log(json);
-        console.log('Searching for -> ' + stars);
-        feed.innerHTML = '';
+        //feed.innerHTML = '';
+        indexFooder.innerHTML = '';
         json.forEach((image) => {
             if(image.stars === stars){
                 const li = document.createElement('li');
                 const div = document.createElement('div');
-                const product = document.createElement('h3');
-                const like = document.createElement('h2');
+                div.className = 'box';
+                const product = document.createElement('div');
+                product.className = 'productName';
+                //.likeDiv >  .likeIcon
+                //const likeNo = document.createElement('p');
+                //likeNo.className = 'likeNo';
+                 const likeIcon = document.createElement('i');
+                 likeIcon.className = 'far fa-thumbs-up fa-fw';
+                const likeDiv = document.createElement('div');
+                likeDiv.className = 'likeDiv';
+                likeDiv.innerHTML = image.likes;
+                likeDiv.appendChild(likeIcon);
+                //likeDiv.appendChild(likeNo);
+                //.info > .productName + .likeDiv
+                const info = document.createElement('div');
+                info.className = 'info';
+                info.appendChild(product);
+                info.appendChild(likeDiv);
+                //.box > img + .info
                 product.innerHTML = image.product;
-                like.innerHTML = image.likes;
-                li.appendChild(product);
                 const img = document.createElement('img');
-                img.src = 'thumbs/' + image.thumbnail;
+                img.src = 'medium/' + image.image;
                 div.appendChild(img);
-                div.appendChild(product);
-                div.appendChild(like);
+                div.appendChild(info);
+                //li > .box
                 li.appendChild(div);
-                feed.appendChild(li);
+                indexFooder.appendChild(li);
             } else if(stars === '' || stars === ' ') {
                 getImages();
             };
@@ -79,23 +109,38 @@ const getImages = () => {
   fetch('/images').then((response) => {
     return response.json();
   }).then((json) => {
-    //console.log(json);
-    feed.innerHTML = '';
+    //feed.innerHTML = '';
+    indexFooder.innerHTML = '';
     json.forEach((image) => {
-      const li = document.createElement('li');
-      const div = document.createElement('div');
-      const product = document.createElement('h3');
-      const like = document.createElement('h2');
-      product.innerHTML = image.product;
-      like.innerHTML = image.likes;
-      li.appendChild(product);
-      const img = document.createElement('img');
-      img.src = 'medium/' + image.image;
-      div.appendChild(img);
-      div.appendChild(product);
-      div.appendChild(like);
-      li.appendChild(div);
-      feed.appendChild(li);
+        const li = document.createElement('li');
+        const div = document.createElement('div');
+        div.className = 'box';
+        const product = document.createElement('div');
+        product.className = 'productName';
+        //.likeDiv >  .likeIcon
+        //const likeNo = document.createElement('p');
+        //likeNo.className = 'likeNo';
+         const likeIcon = document.createElement('i');
+         likeIcon.className = 'far fa-thumbs-up fa-fw';
+        const likeDiv = document.createElement('div');
+        likeDiv.className = 'likeDiv';
+        likeDiv.innerHTML = image.likes;
+        likeDiv.appendChild(likeIcon);
+        //likeDiv.appendChild(likeNo);
+        //.info > .productName + .likeDiv
+        const info = document.createElement('div');
+        info.className = 'info';
+        info.appendChild(product);
+        info.appendChild(likeDiv);
+        //.box > img + .info
+        product.innerHTML = image.product;
+        const img = document.createElement('img');
+        img.src = 'medium/' + image.image;
+        div.appendChild(img);
+        div.appendChild(info);
+        //li > .box
+        li.appendChild(div);
+        indexFooder.appendChild(li);
     });
   });
 };
@@ -154,8 +199,6 @@ const tabletForm = (evt) => {
         categoryImages(searchword);
     });
 };
-
-
 
 //Search form
 sFrm.addEventListener('submit', searchForm);

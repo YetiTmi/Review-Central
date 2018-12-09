@@ -42,6 +42,7 @@ const getUser = (connection,user_id, callback, res) => {
     }
     );
 };
+
 const insert = (data, connection, next)=>{
     connection.query('INSERT INTO uploaded(product, price,category, stars, owner,thumbnail, image, original) VALUES (?,?,?,?,?,?,?,?);',
     data,
@@ -49,35 +50,32 @@ const insert = (data, connection, next)=>{
         if(err) console.log(err);
         next();
     },
-    )};
+)};
 
-    const select = (connection, callback, res) => {
-        connection.query(
-            'SELECT * FROM uploaded',
-            (err, results, fields) => {
-              if(err) console.log(err);
-              callback(results, res);
-            }
-        );
-    };
-
-const search = (data, connection) =>{
-    console.log(data);
-    connection.execute(
-        'SELECT image FROM bc_media WHERE category = ?;', [data.cat],
+const select = (connection, callback, res) => {
+    connection.query('SELECT * FROM uploaded',
         (err, results, fields) => {
-            console.log(err);
-        },
+            if(err) console.log(err);
+            callback(results, res);
+        }
     );
 };
 
-const ratingSearch = (data, connection) =>{
-    console.log(data);
-    connection.execute(
-        'SELECT image FROM bc_media stars category = ?;', [data.star],
+const search = (data, connection, callback, res) => {
+    connection.query('SELECT * FROM uploaded WHERE category = ? ORDER BY id DESC;', [data.cat],
         (err, results, fields) => {
             console.log(err);
-        },
+            callback(results, res);
+        }
+    );
+};
+
+const ratingSearch = (data, connection, callback, res) => {
+    connection.query('SELECT * FROM uploaded WHERE stars = ? ORDER BY id DESC;', [data.star],
+        (err, results, fields) => {
+            console.log(err);
+            callback(results, res);
+        }
     );
 };
 

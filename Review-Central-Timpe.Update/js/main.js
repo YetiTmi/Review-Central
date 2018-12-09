@@ -42,32 +42,45 @@ const userposts = () => {
 
 const buildUserPosts = (image) => {
   const li = document.createElement('li');
-    li.className ="container";
-      const product = document.createElement('h3');
-      const like = document.createElement('h2');
-      product.innerHTML = image.product;
-      like.innerHTML = image.likes;
-      li.appendChild(product);
-      const img = document.createElement('img');
-      const update = document.createElement('button');
-      update.innerHTML = 'update';
-      const deleteImg = document.createElement('button');
-      deleteImg.innerHTML = 'delete';
-      img.src = 'thumbs/' + image.thumbnail;
-      update.addEventListener('click', () => {
-        showForm(image);
-      });
-      const riseDiv = document.createElement('div');
-      riseDiv.className = "overlay";
-      const deleteForm = addDelete(image);
-      riseDiv.appendChild(deleteForm);
-      riseDiv.appendChild(update);
-      riseDiv.appendChild(product);
-      riseDiv.appendChild(like);
-      li.appendChild(riseDiv);
-      li.appendChild(img);
-      console.log(li);
-      Ownfeed.appendChild(li);
+  const container = document.createElement('div');
+  container.className = 'container';
+  const product = document.createElement('div');
+  product.className='productName';
+  const like = document.createElement('div');
+  like.className='likeNo';
+  product.innerHTML = image.product;
+  like.innerHTML = image.likes;
+  const likeIcon = document.createElement('i');
+  likeIcon.className = 'far fa-thumbs-up ';
+  like.appendChild(likeIcon);
+  //li.appendChild(product);
+  const img = document.createElement('img');
+  const update = document.createElement('button');
+  update.innerHTML = 'update';
+  const deleteImg = document.createElement('button');
+  deleteImg.innerHTML = 'delete';
+  img.src = 'thumbs/' + image.thumbnail;
+  update.addEventListener('click', () => {
+    showForm(image);
+  });
+  const riseDiv = document.createElement('div');
+  riseDiv.className = 'overlay';
+  const deleteForm = addDelete(image);
+  const buttonDiv = document.createElement('div');
+  buttonDiv.className = 'buttonDiv';
+  const info = document.createElement('div');
+  info.className='info';
+  buttonDiv.appendChild(update);
+  buttonDiv.appendChild(deleteForm);
+  info.appendChild(product);
+  info.appendChild(like);
+  riseDiv.appendChild(info);
+  riseDiv.appendChild(buttonDiv);
+  container.appendChild(riseDiv);
+  container.appendChild(img);
+  li.appendChild(container);
+  console.log(li);
+  ownFeed.appendChild(li);
 };
 
 const addDelete = (image) => {
