@@ -15,7 +15,7 @@ body {
     margin: 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background-color: #003366;
 }
@@ -358,7 +358,7 @@ body {
     background-color: #003366;
     border: none;
     color: white;
-    padding: 6px 0 23px 0;
+    padding: 6px 0 24px 0;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -369,4 +369,9 @@ body {
 #stextbar {
     padding: 5px 0 5px 0;
     color: white;
+}
+
+#movestar{
+    float: left;
+    padding: 3px;
 }
