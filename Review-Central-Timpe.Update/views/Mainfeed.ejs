@@ -16,8 +16,8 @@
     <div class="topLeft"><img src="../sources/ICON_1.ico" /> ProRevi</div>
     <div class="topRight"> <!-- area for search bar-->
         <form action="/search" method="post" enctype="multipart/form-data" id="searchform">
-            <br><br>
-            <a id="stextbar">Search by rating</a><br><br>
+            <br>
+            <a id="stextbar">Search by rating</a><br><br><br>
             <div id="movestars">
             <span class="rating">
                             <input type="radio" class="rating-input"
@@ -101,7 +101,8 @@
                             <option value="Tablet">Tablet</option>
                             <option value="Computer">Computer</option>
                         </select>
-                        <span class="rating">
+                        <div id="movestar">
+                            <span class="rating">
                                     <input type="radio" class="rating-input"
                                            id="rating-input-1-0" name="star" value="5">
                                     <label for="rating-input-1-0" class="rating-star"></label>
@@ -118,6 +119,8 @@
                                            id="rating-input-1-6" name="star" value="1">
                                     <label for="rating-input-1-6" class="rating-star"></label>
                                 </span>
+                            </div>
+                            <br>
 
                         <input type="file" name="mediafile" accept="image/*" id="pic">
 
