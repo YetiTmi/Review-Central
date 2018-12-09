@@ -3,8 +3,9 @@
 const fileInput = document.querySelector('#pic');
 const upform = document.querySelector('#uploadform');
 const feed = document.querySelector('#imagefeed');
+
 const sFrm = document.querySelector('#searchform');
-const searchinput = document.querySelector('#searchinput');
+const radios = document.getElementsByName('rating-input-1');
 
 const phone = document.querySelector('#phone');
 const television = document.querySelector('#television');
@@ -51,14 +52,11 @@ const getuserslike = () => {
   });
 }
 
-
-
-
+// Sort by requested category
 const categoryImages = (cat) => {
     fetch('/images').then((response) => {
         return response.json();
     }).then((json) => {
-        //console.log(json);
         console.log('Searching for -> ' + cat);
         feed.innerHTML = '';
         json.forEach((image) => {
@@ -83,15 +81,13 @@ const categoryImages = (cat) => {
     });
 };
 
+// Sort by requested rating
 const searchImages = (stars) => {
     fetch('/images').then((response) => {
         return response.json();
     }).then((json) => {
-        //console.log(json);
         console.log('Searching for -> ' + stars);
         feed.innerHTML = '';
-        console.log(searchinput.value);
-        searchinput.value = '';
         json.forEach((image) => {
             if(image.stars === stars){
                 const li = document.createElement('li');
@@ -114,11 +110,11 @@ const searchImages = (stars) => {
     });
 };
 
+// Show all uploads
 const getImages = () => {
   fetch('/images').then((response) => {
     return response.json();
   }).then((json) => {
-    //console.log(json);
     feed.innerHTML = '';
     json.forEach((image) => {
         const postedBy = document.createElement('h2');
@@ -160,25 +156,26 @@ const makeLike = (image) => {
     form.appendChild(inputId);
     form.appendChild(sendButton);
     return form;
-  
-  }
+  };
 
-
+// Form for searching with radio buttons aka stars
 const searchForm = (evt) => {
     evt.preventDefault();
     fetch('/search').then((response) => {
         return response.json();
     }).then((json) => {
         //console.log(json);
-        if(searchinput.isEmpty){
-            searchImages.evt;
-        } else {
-            const searchword = searchinput.value.toUpperCase();
-            searchImages(searchword);
-        };
+        for (var i = 0, length = radios.length; i < length; i++){
+            if (radios[i].checked){
+                const searchword = radios[i].value
+                searchImages(searchword);
+                break;
+            }
+        }
     });
 };
 
+// Forms for category searching
 const phoneForm = (evt) => {
     evt.preventDefault();
     fetch('/phone').then((response) => {
@@ -216,10 +213,9 @@ const tabletForm = (evt) => {
     });
 };
 
-
 const sendForm = (evt) => {
+    evt.preventDefault();
   console.log('sendForm()');
-  evt.preventDefault();
   const fd = new FormData(upform);
   const settings = {
     method: 'post',

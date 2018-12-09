@@ -3,7 +3,7 @@
 const feed = document.querySelector('#imagefeed');
 
 const sFrm = document.querySelector('#searchform');
-const searchinput = document.querySelector('#searchinput');
+const radios = document.getElementsByName('rating-input-1');
 
 const phone = document.querySelector('#phone');
 const television = document.querySelector('#television');
@@ -52,8 +52,6 @@ const searchImages = (stars) => {
         //console.log(json);
         console.log('Searching for -> ' + stars);
         feed.innerHTML = '';
-        console.log(searchinput.value);
-        searchinput.value = '';
         json.forEach((image) => {
             if(image.stars === stars){
                 const li = document.createElement('li');
@@ -110,12 +108,13 @@ const searchForm = (evt) => {
         return response.json();
     }).then((json) => {
         //console.log(json);
-        if(searchinput.isEmpty){
-            searchImages.evt;
-        } else {
-            const searchword = searchinput.value.toUpperCase();
-            searchImages(searchword);
-        };
+        for (var i = 0, length = radios.length; i < length; i++){
+            if (radios[i].checked){
+                const searchword = radios[i].value
+                searchImages(searchword);
+                break;
+            }
+        }
     });
 };
 

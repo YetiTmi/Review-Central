@@ -42,10 +42,12 @@ module.exports = (app, passport) => {
       }
       res.redirect('/');
     });
+    
   //signup site where user are created. first renders the signup.ejs page
   app.get('/signup', (req, res) => {
     res.render('signup.ejs', { message: req.flash('signupMessage') });
   });
+
   //redirect depends if succes or failure
   app.post('/signup', 
   passport.authenticate('local-signup',
@@ -53,7 +55,7 @@ module.exports = (app, passport) => {
     successRedirect: '/Mainfeed',
     failureRedirect: '/signup',
     failureFlash: true,
-}));
+  }));
 
   //if user isLoggedIN, will render the main feed page where reviews are created
   app.get('/Mainfeed', isLoggedIn, (req, res) => {
@@ -71,88 +73,81 @@ module.exports = (app, passport) => {
     res.redirect('/Mainfeed')
   });
 
+  app.post('/search', (req, res, next) =>{
+    console.log('search post');
+    next();
+  });
 
-    app.post('/search', (req, res, next) =>{
-        console.log('search post');
-        next();
-    });
+  app.use('/search:rating', (req, res, next) => {
+    console.log('searching...');
+    console.log(req.body.rating);
+    var data = {
+      star: req.body.rating,
+    };
+    db.ratingSearch(data, connection, next);
+  });
 
-    app.use('/search:rating', (req, res, next) => {
-        console.log('searching...');
-        console.log(req.body.rating);
-        var data = {
-            star: req.body.rating,
-        };
-        db.ratingSearch(data, connection, next);
-        //res.redirect('/');
-    });
+  app.post('/phone', (req, res, next) =>{
+    console.log('phone post');
+    next();
+  });
 
+  app.use('/phone:category', (req, res, next) => {
+    console.log('phone category...');
+    console.log(req.body.category);
+    var data = {
+      cat: req.body.phone,
+    };
+    console.log(data);
+    db.search(data, connection, next);
+  });
 
-    app.post('/phone', (req, res, next) =>{
-        console.log('phone post');
-        next();
-    });
+  app.post('/television', (req, res, next) =>{
+    console.log('television post');
+    next();
+  });
 
-    app.use('/phone:category', (req, res, next) => {
-        console.log('phone category...');
-        console.log(req.body.category);
-        var data = {
-            cat: req.body.phone,
-        };
-        console.log(data);
-        db.search(data, connection, next);
-        //res.redirect('/');
-    });
+  app.use('/television:category', (req, res, next) => {
+    console.log('television category...');
+    console.log(req.body.category);
+    var data = {
+      cat: req.body.television,
+    };
+    console.log(data);
+    db.search(data, connection, next);
+  });
 
-    app.post('/television', (req, res, next) =>{
-        console.log('television post');
-        next();
-    });
+  app.post('/computer', (req, res, next) =>{
+    console.log('computer post');
+    next();
+  });
 
-    app.use('/television:category', (req, res, next) => {
-        console.log('television category...');
-        console.log(req.body.category);
-        var data = {
-            cat: req.body.television,
-        };
-        console.log(data);
-        db.search(data, connection, next);
-        //res.redirect('/');
-    });
-    app.post('/computer', (req, res, next) =>{
-        console.log('computer post');
-        next();
-    });
+  app.use('/computer:category', (req, res, next) => {
+    console.log('computer category...');
+    console.log(req.body.category);
+    var data = {
+      cat: req.body.computer,
+    };
+    console.log(data);
+    db.search(data, connection, next);
+  });
 
-    app.use('/computer:category', (req, res, next) => {
-        console.log('computer category...');
-        console.log(req.body.category);
-        var data = {
-            cat: req.body.computer,
-        };
-        console.log(data);
-        db.search(data, connection, next);
-        //res.redirect('/');
-    });
-    app.post('/tablet', (req, res, next) =>{
-        console.log('tablet post');
-        next();
-    });
+  app.post('/tablet', (req, res, next) =>{
+    console.log('tablet post');
+    next();
+  });
 
-    app.use('/tablet:category', (req, res, next) => {
-        console.log('tablet category...');
-        console.log(req.body.category);
-        var data = {
-            cat: req.body.tablet,
-        };
-        console.log(data);
-        db.search(data, connection, next);
-        //res.redirect('/');
-    });
+  app.use('/tablet:category', (req, res, next) => {
+    console.log('tablet category...');
+    console.log(req.body.category);
+    var data = {
+       cat: req.body.tablet,
+    };
+    console.log(data);
+    db.search(data, connection, next);
+  });
 
-
-
- //get fetch
+  //get fetch
   //upload--happens in the main feed
   app.post('/upload', upload.single('mediafile'), (req, res, next) => {
     next();
@@ -183,32 +178,24 @@ module.exports = (app, passport) => {
   app.use('/upload', (req, res) => {
     db.select(connection, cb, res);
   });
-
-    app.use('/search', (req, res) =>{
-        db.select(connection, cb, res);
-    });
-
-    app.use('/phone', (req, res) =>{
-        db.select(connection, cb, res);
-    });
-
-    app.use('/television', (req, res) =>{
-        db.select(connection, cb, res);
-    });
-
-    app.use('/computer', (req, res) =>{
-        db.select(connection, cb, res);
-    });
-
-    app.use('/tablet', (req, res) =>{
-        db.select(connection, cb, res);
-    });
-
-    
+  app.use('/search', (req, res) =>{
+     db.select(connection, cb, res);
+  });
+  app.use('/phone', (req, res) =>{
+    db.select(connection, cb, res);
+  });
+  app.use('/television', (req, res) =>{
+    db.select(connection, cb, res);
+  });
+  app.use('/computer', (req, res) =>{
+    db.select(connection, cb, res);
+  });
+  app.use('/tablet', (req, res) =>{
+    db.select(connection, cb, res);
+  });  
   app.get('/images', (req, res) => {
     db.select(connection, cb, res);
   });
-
   //profile page
   app.get('/profile',isLoggedIn, (req, res) => {
     res.render('profile');

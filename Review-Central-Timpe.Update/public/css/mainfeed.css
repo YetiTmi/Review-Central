@@ -29,6 +29,12 @@ body{
     text-align: center;
     font-size: 1.5em;
     padding: 8px;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    border: solid 2px;
+    border-radius: 7px;
 }
 .row {
     height: 750px;
@@ -161,7 +167,7 @@ body{
 .catItem {
     background-color: #333333;
     border: none;
-    padding: 12px;
+    padding: 12px 4px 12px 4px;
     color: white;
     cursor: pointer;
     display: inline-block;
@@ -179,4 +185,35 @@ body{
 
 #searchinput{
     padding: 10px;
+}
+
+.rating {
+    overflow: hidden;
+    display: inline-block;
+}
+
+.rating-input {
+    float: right;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0 0 0 -16px;
+    opacity: 0;
+}
+
+.rating-star,
+.rating:hover .rating-star {
+    cursor: pointer;
+    position: relative;
+    float: right;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url('../sources/star3.png') 0 -16px;
+}
+
+.rating:hover .rating-star:hover,
+.rating:hover .rating-star:hover ~ .rating-star,
+.rating-input:checked ~ .rating-star {
+    background-position: 0 0;
 }
