@@ -43,19 +43,27 @@ const getImages = () => {
     feed.innerHTML = '';
     json.forEach((image) => {
       const li = document.createElement('li');
-      li.className ="box";
-      const product = document.createElement('h3');
-      const like = document.createElement('h2');
+      const div = document.createElement('div');
+      div.className ="box";
+      const product = document.createElement('div');
+      product.className='productName';
+      //const likeNo = document.createElement('h2');
       product.innerHTML = image.product;
-      like.innerHTML = image.likes;
-
+      //likeNo.innerHTML = image.likes;
       const img = document.createElement('img');
       img.src = 'medium/' + image.image;
+      const info = document.createElement('div');
+      info.className= "info";
       const likeButton = makeLike(image);
-      li.appendChild(img);
-      li.appendChild(product);
-      li.appendChild(likeButton);
-      li.appendChild(like);
+      const likeDiv = document.createElement('div');
+      likeDiv.className = "likeDiv";
+      likeDiv.innerHTML = image.likes;
+      likeDiv.appendChild(likeButton);
+      info.appendChild(product);
+      info.appendChild(likeDiv);
+      div.appendChild(img);
+      div.appendChild(info);
+      li.appendChild(div);
       feed.appendChild(li);
     });
   });
@@ -72,7 +80,10 @@ const makeLike = (image) => {
   const sendButton = document.createElement('button');
   sendButton.type = "Like";
   sendButton.id = "likeButton";
-  sendButton.innerHTML = "like";
+  const likeIcon = document.createElement('i');
+  likeIcon.className = 'far fa-thumbs-up ';
+  sendButton.appendChild(likeIcon);
+  //sendButton.innerHTML = "like";
   if(image.owner == username || likes.includes(image.id)){
     sendButton.setAttribute("disabled", true);
   }

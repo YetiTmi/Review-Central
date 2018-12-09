@@ -1,57 +1,68 @@
 * {
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Impact, Charcoal, sans-serif;
+    letter-spacing: 2px;
+    word-spacing: 2px;
 }
 
 body {
     margin: 0 auto;
-    padding:0;
+    padding: 0;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 300;
-    line-height: 1.5;
+
     max-height: 2000px;
 }
 
-.topLogo {
+.top {
     margin: 0;
-    padding:0;
-    background-color: #333333;
-    display: flex;
-}
-.logo {
-    color: #f7f8f5;
-    text-align: center;
-    padding:8px;
-    background-color:#dfddd1;
-    /*background-image: ;*/
+    padding: 10px 0;
+    background-color: #004080
 }
 
-.container {
-    background-color: #dfddd1;/*the same as logo's bgcolor*/
-    width: 100%;
-    height: 100%;
+.topbar {
+
+    background-color: #e6e6e6;
+    display: flex;
 }
-.main{
-    width: 100%;
-    height: 570px; /* Should be removed after have a background image*/
-    background-image: url('../sources/background_standard.jpg');
-    background-size: 100%;
-    background-repeat:no-repeat;
-    opacity:0.8;
+
+.logo {
+    margin: 8px 8px 8px 10.7%;
+    padding: 8px;
+    color: #990030;
+    text-align: center;
+    font-size: 1.7em;
+}
+
+.main {
+    margin: 4% 10.7%;
+    border: 10px solid white;
+    height: 400px; /*necessary*/
+    background-image: url('../sources/background_1.jpg');
+
+    background-repeat: no-repeat;
+    /* opacity: 0.8;*/
+
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
 }
-.showSlogan{
+
+.showSlogan {
+    height: 60%;
     color: #fef659;
     text-align: center;
+
 }
+
 .slogan {
-    margin-bottom: 0;
-    font-size: 2.5em;
+    margin: auto 20% 0 20%;
+    font-size: 2em;
+
 }
+
 .sentence {
     margin-top: 0;
     font-size: 0.5em;
@@ -59,56 +70,142 @@ body {
 }
 
 .signLog {
+    height: 40%;
+    margin: 0 0 -80px 0;
     display: flex;
-    flex-direction: column
+    flex-direction: column;
+
 }
-.signLog a{
-    color: #f1f1f1;
+
+.signLog a {
+    color: #ffffff;
     padding: 0 20px 8px 20px;
     text-decoration: none;
     text-align: center;
 }
-.signLogView a:hover {
-    background-color: #f1f1f1;
-    color: black;
+
+.signLog a:hover {
+    background-color: #ffffff;
+    color: #003366;
 }
 
-.newReview{
 
+.newReview {
+    background-color: #e6e6e6;
+    padding: 30px 70px 70px 70px;
 }
-.nrTitle{
+
+.nrTitle {
+    margin: 0 0 35px 0;
     text-align: center;
+    color: #990030;
+    font-size: 3em;
+    font-weight: bold;
 }
 
 #indexFeed {
     list-style-type: none;
+    padding: 0;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
 }
-#indexFeed li{
+
+#indexFeed li {
     width: 30%;
-    margin: auto;
+    margin: 4px;
+    background-color: #ffffff;
+    padding: 12px;
 }
-#indexFeed div{
-    display: flex;
+
+.box {
+    flex-grow: 1;
+    overflow: hidden;
+    /*display: flex;
     flex-flow: row wrap;
-    align-content: space-around;
+    align-content: space-around;*/
 }
-#indexFeed img{
-    width: 100%;
-    height: 100%;
+
+.box img {
+    /*width: 100%;
+    height: 100%;*/
+    height: 300px;
+    min-width: 100%;
+    object-fit: cover; /* no compression, keep the scale*/
 }
-#indexFeed p{
-    font-size: 1.6em;
+
+.info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.productName {
+    font-size: 2em;
     font-weight: bold;
-    margin: auto;
+    color: #003366;
+
+}
+
+.likeDiv {
+    padding: 10px 0 0 0;
+    display: flex;
+    font-size: 1.7em;
+}
+
+.likeDiv i {
+
 }
 
 .footer {
-    background-color: #333333;/*the same as topbar's bgcolor*/
+    background-color: #003366; /*the same as topbar's bgcolor*/
     padding: 10px;
     text-align: center;
-    color: #f2f2f2;/*the same as logo's color*/
+    color: #ffffff;
+}
+
+.footer p {
+    margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .sentence {
+        display: none;
+    }
+
+    #indexFeed li {
+        width: 45%;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+    .row {
+        /*flex-direction: column;*/
+    }
+
+    .topbar {
+        flex-direction: column;
+
+    }
+
+    .main {
+        height: 300px;
+        border: 0;
+        background-image: none;
+        background-color: #e6e6e6;
+
+    }
+
+    .showSlogan {
+        display: none;
+    }
+
+    .signLog a {
+        color: #990030;
+    }
+
+    #indexFeed li {
+        width: 100%;
+    }
 }

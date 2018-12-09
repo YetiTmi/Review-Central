@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="../sources/ICON_1.ico" type="image/x-icon" media="screen">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,34 +11,50 @@
     <title>Login Register</title>
 </head>
 <body>
-<div class="topLogo">
-    <div class="logo">logo</div>
-</div>
-<div class="container">
+<div class="top">
+    <div class="topbar">
+        <div class="logo"><img src="../sources/ICON_1.ico" /> ProRevi</div>
+    </div>
+
     <div class="main">
         <div class="showSlogan">
-            <p class="slogan">SLOGAN</p>
-            <p class="sentence">One sentence introduce</p>
+            <p class="slogan">ProRevi lets you distinguish <br>more suitable electronic products and step on an efficient life.</p>
+            <p class="sentence">ProRevi's review box, stars bar and category search support you to view and shar usage experience of products.</p>
         </div>
         <div class="signLog">
-            <a style="font-size:1.25em;" href="/login">Login</a>
-            <a style="font-size:1.125em;" href="/signup">Sign up</a>
-        </div>
-    </div>
-
-    <div class="newReview">
-        <h1 class="nrTitle">Newest reviews</h1>
-                <ul id="indexFeed">
-
-                </ul>
-            </div>
+            <a style="font-size:1.8em;" href="/login"><i class="fas fa-sign-in-alt"></i>Login</a>
+            <a style="font-size:1.125em;" href="/signup"><i class="fas fa-user-plus"></i>Sign up</a>
         </div>
     </div>
 </div>
 
-<div class="footer">
+
+<div class="newReview">
+    <p class="nrTitle"><i class="far fa-newspaper"></i> Newest reviews</p>
+    <ul id="indexFeed">
+        <!--
+                <li>
+                    <div class="box">
+                        <img></img>
+                        <div class="info">
+                            <div class="productName">product name</div>
+                            <div class="likeDiv">
+                                <div class="likeIcon"></div>
+                                <p class="likeNo></p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+           -->
+    </ul>
+</div>
+
+
+<div class=" footer">
     <p><b>Developer:</b> Timurhan Calisiyor, Emil Toivainen, Yiyan Zhang</p>
-    <p><b>Github:</b><a href="https://github.com/YetiTmi/Review-Central"></a> https://github.com/YetiTmi/Review-Central</p>
+    <p><b>Github:</b><a href="https://github.com/YetiTmi/Review-Central"></a>
+        https://github.com/YetiTmi/Review-Central
+    </p>
     <p><b>Contact us:</b> yiyanz@metropolia.fi</p>
 </div>
 <script type="text/javascript" src="/index.js"></script>

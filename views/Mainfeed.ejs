@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="../sources/ICON_1.ico" type="image/x-icon" media="screen">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/mainfeed.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,32 +13,32 @@
 </head>
 <body>
 <div class="topbar">
-    <div class="topLeft">Main feed</div>
+    <div class="topLeft"><img src="../sources/ICON_1.ico" /> ProRevi</div>
     <div class="topRight"> <!-- area for search bar-->
-        <input type="text" placeholder="Search for reviews">
+        <input type="search" placeholder="Search for reviews">
     </div>
 </div>
 
 <div class="row">
     <div class="side">
         <div class="profile">
-            <b><%= user.username %></b>
-            <button><a href="/profile">profile</a></button>
-            <button><a href="/logout">logout</a></button>
+            <p><%= user.username %></p>
+            <button><a href="/profile"><i class="fas fa-user"></i> profile</a></button>
+            <button><a href="/logout"><i class="fas fa-sign-out-alt"></i> logout</a></button>
         </div>
         <div class="flip-box">
             <div class="flip-box-inner">
                 <div class="flip-box-front">
-                    <h2></h2>
+                    <h2>Upload <br>here...</h2>
                 </div>
                 <div class="flip-box-back">
                     </form>
-                    <h1>upload Image</h1>
+                    <p style="font-size: 1.5em; ">upload Image</p>
                     <form action="/upload" method="post" enctype="multipart/form-data" id="uploadform">
                         <input type="text" name="product" placeholder="product">
-                        <br>
+
                         <input type="number" name="price" placeholder="Price">
-                        <br>
+
                         <select name="category">
                             <option value="Mobilephone">Mobilephone</option>
                             <option value="Television">Television</option>
@@ -43,9 +46,9 @@
                             <option value="Computer">Computer</option>
                         </select>
                         <input type="range" min="1" max="5" name="star" placeholder="Stars">
-                        <br>
+
                         <input type="file" name="mediafile" accept="image/*" id="pic">
-                        <br>
+
                         <button type="submit" id="ButtonSend">Submit</button>
                     </form>
                 </div>
@@ -55,17 +58,27 @@
 
     <div class="main">
 
-            <ul id="imagefeed">
+        <ul id="imagefeed">
 
-                <!--
-                    Feed of items will be here..
-                <li><div class="box"> Content </div></li>
-                <li><div class="box"> Content </div></li>
-                <li><div class="box"> Content </div></li>
-                <li><div class="box"> Content </div></li>
-                <li><div class="box"> Content </div></li>
-                -->
-            </ul>
+            <!--
+                Feed of items will be here..
+            <li>
+                <div class="box">
+                    <img></img>
+                    <div class="info">
+                        <div class="productName"></div>
+                        <div class="likeDiv">likeNo
+                            <button id="likeButton"><i>likeIcon</i></button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li><div class="box"> Content </div></li>
+            <li><div class="box"> Content </div></li>
+            <li><div class="box"> Content </div></li>
+            <li><div class="box"> Content </div></li>
+            -->
+        </ul>
 
     </div>
 
@@ -74,7 +87,8 @@
 
 <div class="footer">
     <p><b>Developer:</b> Timurhan Calisiyor, Emil Toivainen, Yiyan Zhang</p>
-    <p><b>Github:</b><a href="https://github.com/YetiTmi/Review-Central"></a> https://github.com/YetiTmi/Review-Central</p>
+    <p><b>Github:</b><a href="https://github.com/YetiTmi/Review-Central"></a> https://github.com/YetiTmi/Review-Central
+    </p>
     <p><b>Contact us:</b> yiyanz@metropolia.fi</p>
 </div>
 
