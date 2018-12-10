@@ -1,5 +1,5 @@
 # Review-Central
-School project by Team Yeti
+## School project by Team Yeti
 
 
 This contains the full version of the ReviewCentral web application. 
@@ -11,31 +11,19 @@ To get ReviewCentral to your computer you will have to install this repository a
 
 Node modules that you will need are:
 
-$ npm i passport-local
-
-$ npm i bcrypt-nodejs
-
-$ npm i express
-
-$ npm i express-session
-
-$ npm i cookie-parser
-
-$ npm i body-parser
-
-$ npm i morgan
-
-$ npm i passport
-
-$ npm i connect-flash
-
-$ npm i mysql
-
-$ npm i sharp
-
-$ npm i multer
-
-$ npm i .env
+* $ npm i passport-local
+* $ npm i bcrypt-nodejs
+* $ npm i express
+* $ npm i express-session
+* $ npm i cookie-parser
+* $ npm i body-parser
+* $ npm i morgan
+* $ npm i passport
+* $ npm i connect-flash
+* $ npm i mysql
+* $ npm i sharp
+* $ npm i multer
+* $ npm i .env
 
 You will also need a mysql database with three tables. For more insight on the database you will need, see the sql files we have attached to the repository.
 
