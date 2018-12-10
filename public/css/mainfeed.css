@@ -1,0 +1,401 @@
+* {
+    box-sizing: border-box;
+    font-family: Impact, Charcoal, sans-serif;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+}
+
+body {
+    margin: 0;
+    background-color: #e6e6e6;
+    border-radius: 15px;
+}
+
+.topbar {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #003366;
+}
+
+.topLeft {
+margin: 1% 1% 1% 7%;
+    padding: 8px;
+    color: #ffffff;
+    text-align: center;
+    font-size: 1.7em;
+
+}
+.topRight{
+    margin-right: 9%;
+    font-size: 1.5em;
+}
+/*
+.topRight input {
+    margin-right: 50px;
+    height: 2em;
+    font-size: 1.5em;
+}
+*/
+.row {
+    padding: 5% 6% 5% 4%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;
+    align-self: center;
+    align-content: space-between;
+}
+
+.main {
+    width: 75%;
+    box-sizing: border-box;
+    padding: 0 3%;
+}
+
+.side {
+    width: 25%;
+
+    box-sizing: border-box;
+    padding: 0 3%;
+}
+
+
+#imagefeed {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+
+}
+#imagefeed li:hover {
+    transform: scale(1.7); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+#imagefeed li {
+    width: 32%;
+    margin: 4px;
+    background-color: #ffffff;
+    padding: 12px;
+    transition: transform .2s; /* Animation */
+    margin: 0 auto;
+    padding: 5px;
+    margin: 0 2px 13px 2px;
+}
+
+.box {
+    flex-grow: 1;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-around;
+}
+
+.box img {
+    min-width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    font-size:0.9em;
+}
+
+.productName {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #003366;
+}
+
+.likeDiv {
+    padding: 0;
+    display: flex;
+
+}
+
+#likeButton {
+    border: none;
+    padding: 0 7px 0 7px;
+    font-size: 0.9em;
+    background-color: white;
+}
+
+.profile {
+    margin: 4% 0;
+    padding: 12%;
+    display: block;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 30px;
+    font-size: 2em;
+}
+
+.profile p {
+    margin-bottom: 3%;
+}
+
+.profile button {
+    border: none;
+    font-size: 0.6em;
+    background-color: white;
+    padding:  9px 6px;
+}
+
+.profile a {
+    color: black;
+}
+
+.profile button:hover {
+    background-color: #004080;
+    color: #ffffff;
+    border-radius: 30px;
+}
+
+/*
+.profilepic{
+    background-color: rgb(8, 161, 161);
+    padding: 10px;
+    border-radius: 30px;
+    margin-left: 37px;
+}
+*/
+
+.flip-box {
+    margin: 4% 0;
+    background-color: transparent;
+    height: 300px;
+    border: 0;
+    perspective: 1000px;
+    -webkit-perspective: 1000px; /* Safari and Chrome */
+
+}
+
+.flip-box-inner {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-inner {
+    transform: rotateX(180deg);
+}
+
+.flip-box-front, .flip-box-back {
+    border-radius: 30px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.flip-box-front {
+    background-color: #990030;
+    color: black;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.flip-box-back {
+    padding: 5%;
+    background-color: #003366;
+    color: white;
+    transform: rotateX(180deg);
+}
+
+#uploadform {
+    display: flex;
+    flex-direction: column;
+    margin: 0 6%;
+}
+
+#uploadform input, select {
+    /*border: 2px;
+    padding: 1px;*/
+    text-align: center;
+    border-radius: 30px;
+    margin-bottom: 7%;
+}
+
+.footer {
+    background-color: #004080; /*the same as topbar's bgcolor*/
+    padding: 10px;
+    text-align: center;
+    color: #f2f2f2; /*the same as logo's color*/
+}
+
+
+#categories {
+    list-style-type: none;
+    background-color: #990030;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    margin: 0;
+    padding: 10px 0px 10px 0px;
+
+}
+
+.catItem {
+    background-color: #990030;
+
+    border: none;
+    padding: 12px 6px;
+    color: black;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    flex-basis: 10%;
+}
+.catItem:hover{
+    background-color: #003366;
+    border-radius: 30px;
+    color: white;
+}
+#searchCategories {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background-color: #990030;
+
+}
+
+#searchinput{
+    padding: 10px;
+}
+
+.rating {
+    overflow: hidden;
+    display: inline-block;
+}
+
+.rating-input {
+    float: right;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin: 0 0 0 -16px;
+    opacity: 0;
+}
+
+.rating-star,
+.rating:hover .rating-star {
+    cursor: pointer;
+    position: relative;
+    float: right;
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url('../sources/star3.png') 0 -16px;
+}
+
+.rating:hover .rating-star:hover,
+.rating:hover .rating-star:hover ~ .rating-star,
+.rating-input:checked ~ .rating-star {
+    background-position: 0 0;
+}
+
+#upformtext{
+    margin: 16px 0 16px 0;
+}
+
+#buttonsearch {
+    float: right;
+    background-color: #003366;
+    border:none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+#buttonsearch:hover{
+     background-color: #003366;
+     border-radius: 30px;
+     color: white;
+ }
+#stextbar {
+    padding: 5px 0 5px 0;
+    color: white;
+}
+
+#movestar{
+    float: left;
+    padding: 3px;
+}
+@media screen and (max-width: 850px) {
+    .topbar {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .topLeft {
+        margin: auto;
+    }
+
+    .topRight input {
+        margin: auto;
+    }
+
+    .main {
+        width: 100%;
+    }
+
+    .side {
+        width: 100%;
+    }
+
+    .profile {
+        padding: 1%;
+    }
+
+    #imagefeed li {
+        width: 45%;
+    }
+    .flip-box-front, .flip-box-back {
+        height: auto
+    }
+
+    .flip-box {
+        height: 100px;
+    }
+
+}
+
+@media screen and (max-width: 550px) {
+
+    .topbar {
+        flex-direction: column;
+    }
+
+    .row {
+        padding: 2%;
+        /*flex-direction: column;*/
+
+    }
+
+    .main {
+        width: 100%;
+    }
+
+    .side {
+        width: 100%;
+    }
+
+    #imagefeed li {
+        width: 100%;
+    }
+}
