@@ -1,3 +1,11 @@
+/*
+*Team Yeti
+*
+* Javasciptr version that controls the mainfeed pages js.
+* You need to be logged in to acces this page. You have options to like reviews and post your own review to
+* the site. You can also check other peoples reviews.
+*
+* */
 'use strict';
 
 const fileInput = document.querySelector('#pic');
@@ -17,9 +25,8 @@ const televisionform = document.querySelector('#tvform');
 const computerform = document.querySelector('#computerform');
 const tabletform = document.querySelector('#tabletform');
 
-
-var username = "";
-var likes = [];
+let username = "";
+let likes = [];
 
 
 //get user!
@@ -31,24 +38,16 @@ const getuser = () => {
     user.forEach((userdata) => {
       username = userdata.username;
     });
-    //get from an object
-    //Give the user here and check if it matches with the image owner...
   });
 };
-
+//get users likes
 const getuserslike = () => {
   fetch('/node/user_likes').then((response) => {
-    console.log("fetch user likes");
     return response.json();
   }).then((data) => {
-    console.log("data", data);
     data.forEach((userAndLike)=>{
-      console.log("data.forEach", userAndLike.Review_id);
-      likes.push(userAndLike.Review_id)
+      likes.push(userAndLike.Review_id);
     });
-    console.log("Array", likes);
-    //get from an object
-    //Give the user here and check if it matches with the image owner...
   });
 }
 
@@ -175,7 +174,7 @@ const getImages = () => {
     });
   });
 };
-
+//make the like button. It will unavailable if the picture is uploaded by you or are already liked it.
 const makeLike = (image) => {
     const form = document.createElement('form');
     form.action = "/node/likeImage";

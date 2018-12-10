@@ -34,6 +34,7 @@ const newUser = (connection, newUserMysql, insertQuery) =>{
     connection.query(insertQuery, [newUserMysql.username, newUserMysql.password]
         )};
 
+//get user
 const getUser = (connection,user_id, callback, res) => {
     connection.query('SELECT * FROM users1 WHERE id = ?;',[user_id],
     (err,results, fields) => {
@@ -42,6 +43,7 @@ const getUser = (connection,user_id, callback, res) => {
     }
     );
 };
+//insert information to the database
 const insert = (data, connection, next,user)=>{
     connection.query('INSERT INTO uploaded(product, price,category, stars, owner,thumbnail, image, original) VALUES (?,?,?,?,?,?,?,?);',
     data,
@@ -52,7 +54,7 @@ const insert = (data, connection, next,user)=>{
         next();
     },
     )};
-
+  //Select From database
     const select = (connection, callback, res) => {
         connection.query('SELECT * FROM uploaded ORDER BY id DESC;',
             (err, results, fields) => {
@@ -61,7 +63,7 @@ const insert = (data, connection, next,user)=>{
             }
         );
     };
-    
+    //Search from database, Searches by category
     const search = (data, connection, callback, res) => {
         connection.query('SELECT * FROM uploaded WHERE category = ? ORDER BY id DESC;', [data.cat],
             (err, results, fields) => {
@@ -70,7 +72,7 @@ const insert = (data, connection, next,user)=>{
             }
         );
     };
-    
+//Search from database, Searches by rating
     const ratingSearch = (data, connection, callback, res) => {
         connection.query('SELECT * FROM uploaded WHERE stars = ? ORDER BY id DESC;', [data.star],
             (err, results, fields) => {
@@ -79,6 +81,7 @@ const insert = (data, connection, next,user)=>{
             }
         );
     };
+//get specific user posts from the user. Used in the profile screen
     const userPosts = (connection, callback, res, user) =>{
         console.log('users own posts');
         connection.query('SELECT * FROM uploaded WHERE owner = ?', [user.username],
@@ -88,6 +91,7 @@ const insert = (data, connection, next,user)=>{
         }
         )
     };
+    //Back-end is ready to update posts. we decided not to use this one in the finish program... maybe in the future
     const change = (data, connection) => {
         // simple query
         connection.query(
@@ -98,7 +102,7 @@ const insert = (data, connection, next,user)=>{
             },
         );
       };
-
+      //add like to the save_like table.
       const addLike = (data, connection) => {
           console.log(data.user, data.image_id);
         connection.query(
@@ -108,7 +112,7 @@ const insert = (data, connection, next,user)=>{
             }
         );
       };
-
+    //add one point to the user. used when user likes picture.
       const addPoint =(user, connection) => {
         connection.query(
             'UPDATE users1 SET posts = posts + 1 WHERE username = ?', user.username,
@@ -118,6 +122,7 @@ const insert = (data, connection, next,user)=>{
             }
         );
       };
+      //When ever user deletes post it will delete a point from the user. total posts can be seen in the profile screen.
       const losePoint =(user, connection) => {
         connection.query(
             'UPDATE users1 SET posts = posts - 1 WHERE username = ?', user,
@@ -127,7 +132,7 @@ const insert = (data, connection, next,user)=>{
             }
         );
       };
-
+    //add likes to the posts that user likes.
       const addLikeToPost =(data, connection) => {
         console.log("addLikeToPost: "+ JSON.stringify(data));
         connection.query(
@@ -142,7 +147,7 @@ const insert = (data, connection, next,user)=>{
             }
         );
       };
-
+      //Select the user likes from the save_like table. used to specify what posts does the user like.
       const selectUserLikes = (connection, callback, res, user) => {
         connection.query(
             'SELECT * FROM save_like WHERE Username = ?',[user],
@@ -152,6 +157,7 @@ const insert = (data, connection, next,user)=>{
             }
         );
     }
+    //Used to delete posts from the uploaded table
     const deletePost = (connection, data)=> {
         losePoint(data.user, connection);
         connection.query(
@@ -163,7 +169,7 @@ const insert = (data, connection, next,user)=>{
             }
         );
       };
-
+//module exprts
 module.exports = {
     connect: connect,
     deSerial: deSerial,

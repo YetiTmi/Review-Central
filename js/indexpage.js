@@ -1,5 +1,11 @@
+/*
+* Team Yeti
+* Javascipt file for index. It shows you the newest reviews in without login.
+*
+* */
 'use strict';
 
+//all of the elements selelcted
 const indexFooder = document.querySelector('#indexFeed');
 
 const sFrm = document.querySelector('#searchform');
@@ -15,6 +21,7 @@ const televisionform = document.querySelector('#tvform');
 const computerform = document.querySelector('#computerform');
 const tabletform = document.querySelector('#tabletform');
 
+//fetches the images that are in the category
 const categoryImages = (cat) => {
     fetch('/node/images').then((response) => {
         return response.json();
@@ -60,7 +67,7 @@ const categoryImages = (cat) => {
         });
     });
 };
-
+//search images
 const searchImages = (stars) => {
     fetch('/node/images').then((response) => {
         return response.json();
@@ -104,7 +111,7 @@ const searchImages = (stars) => {
         });
     });
 };
-
+//get images and put them in a div
 const getImages = () => {
   fetch('/node/images').then((response) => {
     return response.json();
@@ -146,7 +153,7 @@ const getImages = () => {
 };
 
 
-
+// all of the needed form to search
 const searchForm = (evt) => {
     evt.preventDefault();
     fetch('/node/search').then((response) => {
@@ -200,7 +207,7 @@ const tabletForm = (evt) => {
     });
 };
 
-//Search form
+//event listeneres
 sFrm.addEventListener('submit', searchForm);
 
 //Forms for category buttons

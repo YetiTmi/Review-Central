@@ -1,3 +1,7 @@
+/*
+* Team yeti
+* This is the passport module. it handles the login and register
+* */
 'use strict';
 var LocalStrategy = require("passport-local").Strategy;
 
@@ -16,6 +20,7 @@ module.exports = (passport) => {
   db.deSerial(connection,id,done);
  });
 
+ //signup passport. takes username and password and compares them to the users in users1 table
  passport.use(
   'local-signup',
   new LocalStrategy({
@@ -31,6 +36,7 @@ module.exports = (passport) => {
     if(rows.length){
      return done(null, false, req.flash('signupMessage', 'That is already taken'));
     }else{
+      //password is bcrypted
      var newUserMysql = {
       username: username,
       password: bcrypt.hashSync(password, null, null),
@@ -52,7 +58,7 @@ module.exports = (passport) => {
    });
   })
  );
-
+//passport used in login
  passport.use(
   'local-login',
   new LocalStrategy({

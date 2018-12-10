@@ -1,9 +1,16 @@
+/*
+* Team Yeti
+* This is the javascript file for the profile screen.it fetches the pictures and information about yourself like
+* your email and how many posts you have.
+* */
 'use strict';
 console.log('main.js');
 const list = document.querySelector('#user');
 const ownFeed = document.querySelector('#Ownfeed');
 const updateForm = document.querySelector('#updateform');
 
+
+//get the users information and makes a profile box from them
 const getUser = () => {
   fetch('/node/users').then((response) => {
 
@@ -11,10 +18,11 @@ const getUser = () => {
   }).then((json) => {
     json.forEach((user) => {
       document.getElementById('user').appendChild(constructUser(user));
-      console.log(list);
+
     });
   });
 };
+//constructs the user information(title, interested category, email, posts)
 const constructUser = (user) => {
   const li = document.createElement('li');
   const title = document.createElement('h2');
@@ -29,13 +37,11 @@ const constructUser = (user) => {
   li.appendChild(Inte);
   li.appendChild(email);
   li.appendChild(posts);
-  console.log('User constructed');
   return li;
 };
-
+//Fetches the user posts
 const userposts = () => {
   fetch('/node/userPosts').then((response) => {
-    console.log('fetch users posts');
     return response.json();
   }).then((json) => {
 
@@ -45,7 +51,7 @@ const userposts = () => {
     });
   });
 };
-
+//function to build user posts
 const buildUserPosts = (image) => {
   const li = document.createElement('li');
   const container = document.createElement('div');
@@ -82,10 +88,9 @@ const buildUserPosts = (image) => {
   container.appendChild(riseDiv);
   container.appendChild(img);
   li.appendChild(container);
-  console.log(li);
   ownFeed.appendChild(li);
 };
-
+//adds an update button... not used in current version.
 const addupdate = (image) => {
   const form1 = document.createElement('form');
   form1.action = '/node/update';
@@ -108,10 +113,9 @@ const addupdate = (image) => {
   form1.appendChild(inputPrice);
   form1.appendChild(inputId);
   form1.appendChild(sendButton);
-  console.log(form1);
   return form1;
 };
-
+//add a button to delete files
 const addDelete = (image) => {
   const form = document.createElement('form');
   form.action = '/node/delete';
@@ -128,14 +132,11 @@ const addDelete = (image) => {
   form.appendChild(sendButton);
   return form;
 };
+//shows form. not used but working
 const showForm = (img) => {
 
   document.querySelector('#updateform input[name=id]').value = img.id;
   updateForm.removeAttribute('hidden');
-};
-
-const deleteImgs = (img) => {
-  console.log('delete' + JSON.stringify(img));
 };
 
 userposts();

@@ -1,3 +1,7 @@
+/*
+Team yeti
+Routes of the project.
+ */
 var db = require('../app/database');
 
 const multer = require('multer');
@@ -8,7 +12,7 @@ const connection = db.connect();
 const cb = (result, res) => {
   res.send(result);
 };
-
+//specifying which table to use
 connection.query('USE emilt');
 //everything is exported
 module.exports = (app, passport) => {
@@ -56,6 +60,7 @@ module.exports = (app, passport) => {
       user: req.user
     });
   });
+  //when liking image this happens. Also add like to post
   app.use('/likeImage', (req, res) => {
     data = {
       user: req.user.username,
@@ -65,12 +70,12 @@ module.exports = (app, passport) => {
     res.redirect('Mainfeed');
   });
 
-
+//search posts
     app.post('/search', (req, res, next) =>{
         console.log('search post');
         next();
     });
-
+//search by rating. rating is passed in the url
     app.use('/search:rating', (req, res, next) => {
         console.log('searching...');
         console.log(req.body.rating);
@@ -81,12 +86,12 @@ module.exports = (app, passport) => {
         //res.redirect('/');
     });
 
-
+//post phone category
     app.post('/phone', (req, res, next) =>{
         console.log('phone post');
         next();
     });
-
+//takes catch of the phone category. shows the results. IS same in the television, computer and tablet.
     app.use('/phone:category', (req, res, next) => {
         console.log('phone category...');
         console.log(req.body.category);
@@ -195,7 +200,7 @@ module.exports = (app, passport) => {
         db.select(connection, cb, res);
     });
 
-    
+    //get images
   app.get('/images', (req, res) => {
     db.select(connection, cb, res);
   });
@@ -204,7 +209,7 @@ module.exports = (app, passport) => {
   app.get('/profile',isLoggedIn, (req, res) => {
     res.render('profile');
   });
-
+//delete picture
   app.use('/delete', (req, res) => {
     data = {id: req.query.id, user: req.user.username}
     console.log(data);
@@ -212,6 +217,7 @@ module.exports = (app, passport) => {
     res.redirect('profile');
   });
 
+  //update. not used in finsihed product
   app.use('/update', (req, res) => {
     console.log("update");
     console.log(req.query);
@@ -224,10 +230,12 @@ module.exports = (app, passport) => {
     res.redirect('profile')
   });
 
+  //get the user posts
   app.get('/userPosts', (req, res) => {
     db.userPosts(connection, cb, res, req.user);
   });
 
+  //get user likes
   app.get('/user_likes', (req, res) => {
     db.selectUserLikes(connection, cb, res, req.user.username);
   });
