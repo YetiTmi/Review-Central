@@ -2,7 +2,7 @@
 ## School project by Team Yeti
 
 
-This contains the full version of the ReviewCentral web application. 
+#### This contains the full version of the ReviewCentral web application. 
 
 ReviewCentral has five pages, index page is for users that dont want to login or register to the site. There are separate pages for login and register. After loging in the user can see the mainfeed page. Within the mainfeed page user is able to like and view other peoples posted reviews and upload new reviews. Uploading a review has four steps. User will need to inputsthe name, prize, category and the rating of the product. ReviewCentral has four categories to choose from, mobilephones, televisions, computers or tablets. In the profile page user can see own uploads and delete them if need be.
 
@@ -34,4 +34,4 @@ When you are all done with the dependencies to get the application running, you 
 
 
 
-Autohors of this project: Emil Toivainen https://github.com/Em1lT, Timurhan Calisiyor https://github.com/timpec and Yiyan Zhang https://github.com/yeannnnn.
+*Authors of this project: Emil Toivainen https://github.com/Em1lT, Timurhan Calisiyor https://github.com/timpec and Yiyan Zhang https://github.com/yeannnnn.*
