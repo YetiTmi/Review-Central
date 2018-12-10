@@ -10,44 +10,36 @@ To get ReviewCentral to your computer you will have to install this repository a
 
 Node modules that you will need are:
 
-passport-local
-
-brypt-nodejs
-
-express
-
-express-session
-
-cookie-parser
-
-body-parser
-
-morgan
-
-passport
-
-connect-flash
-
-mysql
-
-sharp
-
-multer
-
-.env
-
-
-
 $ npm i passport-local
+
 $ npm i bcrypt-nodejs
+
 $ npm i express
+
 $ npm i express-session
+
 $ npm i cookie-parser
+
 $ npm i body-parser
+
 $ npm i morgan
+
 $ npm i passport
+
 $ npm i connect-flash
+
 $ npm i mysql
+
 $ npm i sharp
+
 $ npm i multer
+
 $ npm i .env
+
+You will also need a mysql database with three tables. For more insight on the database you will need, see the sql files we have attached to the repository.
+
+
+When you are all done with the dependencies to get the application running, you will need to type the ($ npm start) command in the directory the application files are located in.
+
+
+Autohors of this project: Emil Toivainen https://github.com/Em1lT, Timurhan Calisiyor https://github.com/timpec and Yiyan Zhang https://github.com/yeannnnn.
