@@ -9,7 +9,7 @@ ReviewCentral has five pages, index page is for users that dont want to login or
 
 To get ReviewCentral to your computer you will have to install this repository as a zip or clone it. Node modules are not included here, so you will have to download those by yourself.
 
-Node modules that you will need are:
+#### Node modules that you will need are:
 
 * $ npm i passport-local
 * $ npm i bcrypt-nodejs
