@@ -11,17 +11,29 @@ To get ReviewCentral to your computer you will have to install this repository a
 Node modules that you will need are:
 
 passport-local
+
 brypt-nodejs
+
 express
+
 express-session
+
 cookie-parser
+
 body-parser
+
 morgan
+
 passport
+
 connect-flash
+
 mysql
+
 sharp
+
 multer
+
 .env
 
 
