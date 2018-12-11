@@ -25,7 +25,7 @@ To get ReviewCentral to your computer you will have to install this repository a
 * $ npm i multer
 * $ npm i .env
 
-You will also need a mysql database with three tables. For more insight on the database you will need, see the sql files we have attached to the repository.
+You will also need a mysql database with three tables. For more insight on the database you will need, see the sql files we have attached to the repository. You will need to add autoincrement on each tables id columns.
 
 
 
